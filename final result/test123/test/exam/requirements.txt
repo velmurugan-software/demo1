@@ -1,0 +1,12 @@
+Flask
+pandas
+numpy
+scikit-learn
+joblib
+requests
+feedparser
+openpyxl
+xlrd
+xgboost
+gunicorn
+Werkzeug

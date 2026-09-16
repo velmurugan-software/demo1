@@ -1,0 +1,52 @@
+{
+    "target": "yield",
+    "best_model": "XGBoost",
+    "features": [
+        "state",
+        "district",
+        "crop",
+        "season",
+        "year",
+        "month",
+        "area",
+        "rainfall_mm",
+        "temperature_c",
+        "humidity_percent",
+        "soil_moisture_percent",
+        "soil_ph"
+    ],
+    "categorical_features": [
+        "state",
+        "district",
+        "crop",
+        "season"
+    ],
+    "numeric_features": [
+        "year",
+        "month",
+        "area",
+        "rainfall_mm",
+        "temperature_c",
+        "humidity_percent",
+        "soil_moisture_percent",
+        "soil_ph"
+    ],
+    "results": {
+        "Random Forest": {
+            "MAE": 1.0872526955201214,
+            "RMSE": 3.0972914652607026,
+            "R2": 0.9784688703136294
+        },
+        "Gradient Boosting": {
+            "MAE": 1.2568285480712764,
+            "RMSE": 3.1446893407416243,
+            "R2": 0.9778048460181112
+        },
+        "XGBoost": {
+            "MAE": 1.0774530369557853,
+            "RMSE": 3.0823848419464674,
+            "R2": 0.978675621337787
+        }
+    },
+    "units": "ton/ha"
+}

@@ -1,0 +1,1010 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Careers at Crop Yield AI - Join our smart agriculture technology team">
+
+    <title>Careers | Crop Yield AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/farmer1.css') }}">
+
+    <style>
+
+        /* =====================================================
+           CAREERS PAGE
+        ====================================================== */
+
+        .careers-page {
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+
+        /* HERO */
+
+        .careers-hero {
+            min-height: 55vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .careers-hero-content {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .careers-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 30px;
+            background: rgba(46, 125, 50, 0.12);
+            color: #2e7d32;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        .careers-hero h1 {
+            font-size: clamp(42px, 6vw, 72px);
+            line-height: 1.1;
+            margin: 0 0 25px;
+        }
+
+        .careers-hero h1 span {
+            color: #2e7d32;
+        }
+
+        .careers-hero p {
+            max-width: 720px;
+            margin: auto;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        /* JOB SECTION */
+
+        .jobs-section {
+            padding: 80px 7%;
+        }
+
+        .jobs-heading {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .jobs-heading span {
+            color: #2e7d32;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .jobs-heading h2 {
+            font-size: 42px;
+            margin: 12px 0;
+        }
+
+        .jobs-heading p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* JOB GRID */
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* JOB CARD */
+
+        .job-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(46, 125, 50, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.11);
+        }
+
+        .job-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            background: rgba(46, 125, 50, 0.12);
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .job-card h3 {
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .job-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .job-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .job-details span {
+            background: #f3f7f3;
+            color: #456;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .job-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            background: #2e7d32;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .job-button:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+        }
+
+        /* WHY JOIN */
+
+        .why-section {
+            padding: 90px 7%;
+            background: rgba(20, 60, 30, 0.04);
+        }
+
+        .why-content {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .why-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .why-heading span {
+            color: #2e7d32;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .why-heading h2 {
+            font-size: 40px;
+            margin: 12px 0;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .why-card {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(46, 125, 50, 0.12);
+        }
+
+        .why-card .why-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .why-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .why-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* CTA */
+
+        .careers-cta {
+            padding: 90px 7%;
+            text-align: center;
+        }
+
+        .careers-cta-box {
+            max-width: 950px;
+            margin: auto;
+            padding: 60px 30px;
+            border-radius: 25px;
+            background: linear-gradient(
+                135deg,
+                rgba(46, 125, 50, 0.12),
+                rgba(139, 195, 74, 0.12)
+            );
+        }
+
+        .careers-cta-box h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .careers-cta-box p {
+            max-width: 650px;
+            margin: 0 auto 30px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .apply-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 28px;
+            border-radius: 12px;
+            background: #2e7d32;
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        .apply-button:hover {
+            background: #1b5e20;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .careers-page {
+                padding-top: 80px;
+            }
+
+            .careers-hero {
+                min-height: auto;
+                padding: 60px 20px;
+            }
+
+            .jobs-section,
+            .why-section,
+            .careers-cta {
+                padding: 60px 20px;
+            }
+
+            .jobs-heading h2,
+            .why-heading h2,
+            .careers-cta-box h2 {
+                font-size: 30px;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="background-overlay"></div>
+
+<div class="page">
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <!-- LOGO -->
+
+        <a href="{{ url_for('farmer_dashboard') }}"
+           class="logo">
+
+            <div class="logo-icon">
+                🌾
+            </div>
+
+            <div class="logo-text">
+
+                <span class="logo-title">
+                    Crop Yield AI
+                </span>
+
+                <span class="logo-subtitle">
+                    Smart Agriculture
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="nav-menu"
+             id="navMenu">
+
+            <a href="{{ url_for('farmer_dashboard') }}"
+               class="nav-link">
+
+                Home
+
+            </a>
+
+
+            <a href="{{ url_for('solutions') }}"
+               class="nav-link">
+
+                Solutions
+
+            </a>
+
+
+            <a href="{{ url_for('for_whom') }}"
+               class="nav-link">
+
+                For Whom
+
+            </a>
+
+
+            <a href="{{ url_for('history') }}"
+               class="nav-link">
+
+                History
+
+            </a>
+
+
+            <a href="{{ url_for('analytics') }}"
+               class="nav-link">
+
+                Analytics
+
+            </a>
+
+
+            <a href="{{ url_for('farmer_dashboard') }}#about"
+               class="nav-link">
+
+                About Us
+
+            </a>
+
+
+            <a href="{{ url_for('careers') }}"
+               class="nav-link active">
+
+                Careers
+
+            </a>
+
+        </nav>
+
+
+        <!-- NAV RIGHT -->
+
+        <div class="nav-right">
+
+            <span class="language">
+                EN
+            </span>
+
+
+            {% if username %}
+
+                <span class="nav-user">
+                    Hi, {{ username }}
+                </span>
+
+                <a href="{{ url_for('logout') }}"
+                   class="login-button">
+
+                    Logout
+
+                </a>
+
+            {% else %}
+
+                <a href="{{ url_for('login') }}"
+                   class="login-button">
+
+                    Login
+
+                </a>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- MOBILE MENU -->
+
+        <button type="button"
+                class="menu-button"
+                id="menuButton"
+                aria-label="Open Menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         CAREERS PAGE
+    ====================================================== -->
+
+    <main class="careers-page">
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="careers-hero">
+
+            <div class="careers-hero-content">
+
+                <div class="careers-badge">
+
+                    🌱
+                    JOIN CROP YIELD AI
+
+                </div>
+
+
+                <h1>
+
+                    Build the Future of
+                    <br>
+
+                    <span>Smart Agriculture</span>
+
+                </h1>
+
+
+                <p>
+
+                    Join a technology-focused team working
+                    at the intersection of artificial
+                    intelligence, machine learning,
+                    agriculture and software development.
+
+                    Together, we can build smarter tools
+                    for better agricultural decisions.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             JOB OPENINGS
+        ================================================== -->
+
+        <section class="jobs-section">
+
+            <div class="jobs-heading">
+
+                <span>
+                    OPEN OPPORTUNITIES
+                </span>
+
+                <h2>
+                    Explore Our Careers
+                </h2>
+
+                <p>
+
+                    We are interested in people who enjoy
+                    solving real-world problems with
+                    technology.
+
+                </p>
+
+            </div>
+
+
+            <div class="jobs-grid">
+
+
+                <!-- JOB 1 -->
+
+                <article class="job-card">
+
+                    <div class="job-icon">
+                        🤖
+                    </div>
+
+                    <h3>
+                        Machine Learning Developer
+                    </h3>
+
+                    <p>
+
+                        Work on machine learning models,
+                        data preprocessing, model evaluation
+                        and crop yield prediction systems.
+
+                    </p>
+
+                    <div class="job-details">
+
+                        <span>
+                            Machine Learning
+                        </span>
+
+                        <span>
+                            Python
+                        </span>
+
+                        <span>
+                            Scikit-learn
+                        </span>
+
+                    </div>
+
+                    <a href="https://in.linkedin.com/jobs/machine-learning-developer-jobs"
+                       class="job-button"
+                       target="_blank"
+                       rel="noopener noreferrer">
+
+                        Apply Now →
+
+                    </a>
+
+                </article>
+
+
+
+                <!-- JOB 2 -->
+
+                <article class="job-card">
+
+                    <div class="job-icon">
+                        💻
+                    </div>
+
+                    <h3>
+                        Python Developer
+                    </h3>
+
+                    <p>
+
+                        Develop backend services, APIs and
+                        data-processing components for our
+                        smart agriculture platform.
+
+                    </p>
+
+                    <div class="job-details">
+
+                        <span>
+                            Python
+                        </span>
+
+                        <span>
+                            Flask
+                        </span>
+
+                        <span>
+                            REST API
+                        </span>
+
+                    </div>
+
+                    <a href="https://in.linkedin.com/jobs/python-developer-jobs"
+                       class="job-button"
+                       target="_blank"
+                       rel="noopener noreferrer">
+
+                        Apply Now →
+
+                    </a>
+
+                </article>
+
+
+
+                <!-- JOB 3 -->
+
+                <article class="job-card">
+
+                    <div class="job-icon">
+                        🌐
+                    </div>
+
+                    <h3>
+                        Full Stack Developer
+                    </h3>
+
+                    <p>
+
+                        Build responsive web interfaces and
+                        backend services that connect farmers
+                        with intelligent agricultural tools.
+
+                    </p>
+
+                    <div class="job-details">
+
+                        <span>
+                            HTML/CSS
+                        </span>
+
+                        <span>
+                            JavaScript
+                        </span>
+
+                        <span>
+                            Flask
+                        </span>
+
+                    </div>
+
+                    <a href="https://in.linkedin.com/jobs/full-stack-developer-jobs-india"
+                       class="job-button"
+                       target="_blank"
+                       rel="noopener noreferrer">
+
+                        Apply Now →
+
+                    </a>
+
+                </article>
+
+
+
+                <!-- JOB 4 -->
+
+                <article class="job-card">
+
+                    <div class="job-icon">
+                        📊
+                    </div>
+
+                    <h3>
+                        Data Science Intern
+                    </h3>
+
+                    <p>
+
+                        Analyze agricultural datasets,
+                        discover useful patterns and support
+                        data-driven crop prediction solutions.
+
+                    </p>
+
+                    <div class="job-details">
+
+                        <span>
+                            Python
+                        </span>
+
+                        <span>
+                            Pandas
+                        </span>
+
+                        <span>
+                            Data Analysis
+                        </span>
+
+                    </div>
+
+                    <a href="https://in.linkedin.com/jobs/data-science-intern-jobs"
+                       class="job-button"
+                       target="_blank"
+                       rel="noopener noreferrer">
+
+                        Apply Now →
+
+                    </a>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             WHY JOIN US
+        ================================================== -->
+
+        <section class="why-section">
+
+            <div class="why-content">
+
+
+                <div class="why-heading">
+
+                    <span>
+                        WHY CROP YIELD AI
+                    </span>
+
+                    <h2>
+                        Why Work With Us?
+                    </h2>
+
+                </div>
+
+
+                <div class="why-grid">
+
+
+                    <div class="why-card">
+
+                        <div class="why-icon">
+                            🤖
+                        </div>
+
+                        <h3>
+                            AI & ML
+                        </h3>
+
+                        <p>
+                            Work with modern AI and machine
+                            learning technologies.
+                        </p>
+
+                    </div>
+
+
+                    <div class="why-card">
+
+                        <div class="why-icon">
+                            🌾
+                        </div>
+
+                        <h3>
+                            Real Impact
+                        </h3>
+
+                        <p>
+                            Build technology focused on
+                            real agricultural challenges.
+                        </p>
+
+                    </div>
+
+
+                    <div class="why-card">
+
+                        <div class="why-icon">
+                            📚
+                        </div>
+
+                        <h3>
+                            Learning
+                        </h3>
+
+                        <p>
+                            Develop practical skills through
+                            meaningful technology projects.
+                        </p>
+
+                    </div>
+
+
+                    <div class="why-card">
+
+                        <div class="why-icon">
+                            🚀
+                        </div>
+
+                        <h3>
+                            Innovation
+                        </h3>
+
+                        <p>
+                            Explore new ideas and improve
+                            intelligent agriculture systems.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             APPLICATION CTA
+        ================================================== -->
+
+        <section class="careers-cta">
+
+            <div class="careers-cta-box">
+
+                <h2>
+                    Don't See Your Role?
+                </h2>
+
+                <p>
+
+                    We are always interested in meeting
+                    talented people who are passionate about
+                    technology, agriculture and innovation.
+
+                    Find additional opportunities and
+                    submit your application through LinkedIn.
+
+                </p>
+
+
+                <a href="https://www.linkedin.com/jobs/"
+                   class="apply-button"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    📩 Find More Jobs →
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+
+        <div class="footer-brand">
+
+            <div class="logo-icon">
+                🌾
+            </div>
+
+            <div>
+
+                <strong>
+                    Crop Yield AI
+                </strong>
+
+                <p>
+                    Smart Agriculture Prediction System
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="{{ url_for('farmer_dashboard') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('solutions') }}">
+                Solutions
+            </a>
+
+            <a href="{{ url_for('for_whom') }}">
+                For Whom
+            </a>
+
+            <a href="{{ url_for('history') }}">
+                History
+            </a>
+
+            <a href="{{ url_for('analytics') }}">
+                Analytics
+            </a>
+
+            <a href="{{ url_for('careers') }}">
+                Careers
+            </a>
+
+        </div>
+
+
+        <p class="copyright">
+
+            © 2026 Crop Yield AI.
+            Smart Agriculture Technology.
+
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="{{ url_for('static', filename='js/farmer.js') }}">
+</script>
+
+
+</body>
+
+</html>
+```

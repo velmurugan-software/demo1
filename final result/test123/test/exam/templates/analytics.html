@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Crop Yield AI Analytics Dashboard">
+
+    <title>Analytics | Crop Yield AI</title>
+
+
+    <!-- =====================================================
+         FARMER CSS
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/farmer1.css') }}">
+
+
+    <!-- =====================================================
+         ANALYTICS CSS
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/analytics.css') }}">
+
+
+    <!-- =====================================================
+         PDF LIBRARIES
+    ====================================================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+    </script>
+
+
+    <!-- =====================================================
+         CHART.JS
+    ====================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js">
+    </script>
+
+</head>
+
+
+<body>
+
+
+<div class="background-overlay"></div>
+
+
+<div class="page">
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+
+        <!-- LOGO -->
+
+        <a href="{{ url_for('farmer_dashboard') }}"
+           class="logo">
+
+            <div class="logo-icon">
+                🌾
+            </div>
+
+            <div class="logo-text">
+
+                <span class="logo-title">
+                    Crop Yield AI
+                </span>
+
+                <span class="logo-subtitle">
+                    Smart Agriculture
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
+        <nav class="nav-menu"
+             id="navMenu">
+
+
+            <a href="{{ url_for('farmer_dashboard') }}"
+               class="nav-link">
+
+                Home
+
+            </a>
+
+
+            <a href="{{ url_for('solutions') }}"
+               class="nav-link">
+
+                Solutions
+
+            </a>
+
+
+            <a href="{{ url_for('for_whom') }}"
+               class="nav-link">
+
+                For Whom
+
+            </a>
+
+
+            <a href="{{ url_for('history') }}"
+               class="nav-link">
+
+                History
+
+            </a>
+
+
+            <a href="{{ url_for('analytics') }}"
+               class="nav-link active">
+
+                Analytics
+
+            </a>
+
+
+            <a href="{{ url_for('farmer_dashboard') }}#about"
+               class="nav-link">
+
+                About Us
+
+            </a>
+
+
+            <a href="{{ url_for('careers') }}"
+               class="nav-link">
+
+                Careers
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- =================================================
+             NAV RIGHT
+        ================================================== -->
+
+        <div class="nav-right">
+
+
+            <span class="language">
+                EN
+            </span>
+
+
+            {% if username %}
+
+            <span class="nav-user">
+
+                Hi, {{ username }}
+
+            </span>
+
+
+            <a href="{{ url_for('logout') }}"
+               class="login-button">
+
+                Logout
+
+            </a>
+
+            {% endif %}
+
+
+        </div>
+
+
+        <!-- =================================================
+             MOBILE MENU
+        ================================================== -->
+
+        <button type="button"
+                class="menu-button"
+                id="menuButton"
+                aria-label="Open Menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+    </header>
+
+
+
+    <!-- =====================================================
+         ANALYTICS HERO
+    ====================================================== -->
+
+    <section class="analytics-hero">
+
+
+        <div class="analytics-hero-content">
+
+
+            <span class="analytics-label">
+
+                📊 FARM ANALYTICS
+
+            </span>
+
+
+            <h1>
+
+                Agricultural
+
+                <span>Insights</span>
+
+            </h1>
+
+
+            <p>
+
+                Analyze your crop yield predictions,
+                environmental conditions and prediction
+                activity in one place.
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SUMMARY CARDS
+    ====================================================== -->
+
+    <section class="analytics-summary">
+
+
+        <!-- TOTAL PREDICTIONS -->
+
+        <div class="analytics-summary-card">
+
+
+            <div class="summary-icon">
+                🌾
+            </div>
+
+
+            <div>
+
+                <span>
+                    TOTAL PREDICTIONS
+                </span>
+
+
+                <strong>
+
+                    {{ crop_counts | sum }}
+
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- CROPS ANALYZED -->
+
+        <div class="analytics-summary-card">
+
+
+            <div class="summary-icon">
+                🌱
+            </div>
+
+
+            <div>
+
+                <span>
+                    CROPS ANALYZED
+                </span>
+
+
+                <strong>
+
+                    {{ crop_labels | length }}
+
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- AI PREDICTIONS -->
+
+        <div class="analytics-summary-card">
+
+
+            <div class="summary-icon">
+                🤖
+            </div>
+
+
+            <div>
+
+                <span>
+                    AI PREDICTIONS
+                </span>
+
+
+                <strong id="aiPredictionCount">
+
+                    0
+
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- NORMAL PREDICTIONS -->
+
+        <div class="analytics-summary-card">
+
+
+            <div class="summary-icon">
+                📊
+            </div>
+
+
+            <div>
+
+                <span>
+                    NORMAL PREDICTIONS
+                </span>
+
+
+                <strong id="normalPredictionCount">
+
+                    0
+
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ANALYTICS CHARTS
+    ====================================================== -->
+
+    <main class="analytics-container">
+
+
+        <!-- =================================================
+             CROP COUNT
+        ================================================== -->
+
+        <div class="analytics-chart-card">
+
+
+            <div class="chart-header">
+
+
+                <div>
+
+                    <span>
+                        🌾 CROP ANALYSIS
+                    </span>
+
+
+                    <h2>
+                        Predictions by Crop
+                    </h2>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="chart-wrapper">
+
+                <canvas id="cropChart"></canvas>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             CROP PIE
+        ================================================== -->
+
+        <div class="analytics-chart-card">
+
+
+            <div class="chart-header">
+
+
+                <div>
+
+                    <span>
+                        🌱 DISTRIBUTION
+                    </span>
+
+
+                    <h2>
+                        Crop Distribution
+                    </h2>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="chart-wrapper chart-small">
+
+                <canvas id="cropPieChart"></canvas>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             AVERAGE PREDICTION
+        ================================================== -->
+
+        <div class="analytics-chart-card full-width">
+
+
+            <div class="chart-header">
+
+
+                <div>
+
+                    <span>
+                        📈 PERFORMANCE
+                    </span>
+
+
+                    <h2>
+                        Average Predicted Yield by Crop
+                    </h2>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="chart-wrapper">
+
+                <canvas id="averageCropChart"></canvas>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             YEAR ANALYSIS
+        ================================================== -->
+
+        <div class="analytics-chart-card">
+
+
+            <div class="chart-header">
+
+
+                <div>
+
+                    <span>
+                        📅 YEAR ANALYSIS
+                    </span>
+
+
+                    <h2>
+                        Predictions by Year
+                    </h2>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="chart-wrapper">
+
+                <canvas id="yearChart"></canvas>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             AI VS NORMAL
+        ================================================== -->
+
+        <div class="analytics-chart-card">
+
+
+            <div class="chart-header">
+
+
+                <div>
+
+                    <span>
+                        🤖 PREDICTION TYPE
+                    </span>
+
+
+                    <h2>
+                        AI vs Normal
+                    </h2>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="chart-wrapper chart-small">
+
+                <canvas id="typeChart"></canvas>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             RAINFALL
+        ================================================== -->
+
+        <div class="analytics-chart-card">
+
+
+            <div class="chart-header">
+
+
+                <div>
+
+                    <span>
+                        🌧️ ENVIRONMENT
+                    </span>
+
+
+                    <h2>
+                        Rainfall vs Prediction
+                    </h2>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="chart-wrapper">
+
+                <canvas id="rainfallChart"></canvas>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             TEMPERATURE
+        ================================================== -->
+
+        <div class="analytics-chart-card">
+
+
+            <div class="chart-header">
+
+
+                <div>
+
+                    <span>
+                        🌡️ ENVIRONMENT
+                    </span>
+
+
+                    <h2>
+                        Temperature vs Prediction
+                    </h2>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="chart-wrapper">
+
+                <canvas id="temperatureChart"></canvas>
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         ACTION BUTTONS
+    ====================================================== -->
+
+    <div class="analytics-actions">
+
+
+        <!-- BACK -->
+
+        <a href="{{ url_for('farmer_dashboard') }}"
+           class="analytics-button">
+
+            ← Back to Dashboard
+
+        </a>
+
+
+        <!-- HISTORY -->
+
+        <a href="{{ url_for('history') }}"
+           class="analytics-button">
+
+            📋 View Prediction History
+
+        </a>
+
+
+        <!-- DOWNLOAD PDF -->
+
+        <button type="button"
+                class="analytics-button"
+                id="downloadPdfButton"
+                onclick="downloadAnalyticsPDF()">
+
+            📥 Download Analytics PDF
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+
+        <div class="footer-brand">
+
+
+            <div class="logo-icon">
+                🌾
+            </div>
+
+
+            <div>
+
+                <strong>
+                    Crop Yield AI
+                </strong>
+
+
+                <p>
+                    Smart Agriculture Prediction System
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="footer-links">
+
+
+            <a href="{{ url_for('farmer_dashboard') }}">
+
+                Home
+
+            </a>
+
+
+            <a href="{{ url_for('history') }}">
+
+                History
+
+            </a>
+
+
+            <a href="{{ url_for('analytics') }}">
+
+                Analytics
+
+            </a>
+
+
+            <a href="{{ url_for('farmer_dashboard') }}#about">
+
+                About
+
+            </a>
+
+
+        </div>
+
+
+
+        <p class="copyright">
+
+            © 2026 Crop Yield AI.
+            Smart Agriculture Technology.
+
+        </p>
+
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+
+/* =====================================================
+   DATA FROM FLASK
+===================================================== */
+
+const cropLabels =
+    {{ crop_labels | tojson }};
+
+const cropCounts =
+    {{ crop_counts | tojson }};
+
+const avgCropLabels =
+    {{ avg_crop_labels | tojson }};
+
+const avgCropValues =
+    {{ avg_crop_values | tojson }};
+
+const typeLabels =
+    {{ type_labels | tojson }};
+
+const typeCounts =
+    {{ type_counts | tojson }};
+
+const yearLabels =
+    {{ year_labels | tojson }};
+
+const yearCounts =
+    {{ year_counts | tojson }};
+
+const rainfallValues =
+    {{ rainfall_values | tojson }};
+
+const temperatureValues =
+    {{ temperature_values | tojson }};
+
+
+
+/* =====================================================
+   AI / NORMAL COUNTS
+===================================================== */
+
+let aiCount = 0;
+
+let normalCount = 0;
+
+
+typeLabels.forEach(function(type, index) {
+
+
+    if (String(type).toUpperCase() === "AI") {
+
+        aiCount = typeCounts[index];
+
+    }
+
+
+    if (String(type).toUpperCase() === "NORMAL") {
+
+        normalCount = typeCounts[index];
+
+    }
+
+});
+
+
+document.getElementById(
+    "aiPredictionCount"
+).textContent = aiCount;
+
+
+document.getElementById(
+    "normalPredictionCount"
+).textContent = normalCount;
+
+
+
+/* =====================================================
+   COMMON CHART OPTIONS
+===================================================== */
+
+const commonOptions = {
+
+    responsive: true,
+
+    maintainAspectRatio: false,
+
+    plugins: {
+
+        legend: {
+
+            display: true
+
+        }
+
+    }
+
+};
+
+
+
+/* =====================================================
+   CROP BAR CHART
+===================================================== */
+
+new Chart(
+
+    document.getElementById("cropChart"),
+
+    {
+
+        type: "bar",
+
+        data: {
+
+            labels: cropLabels,
+
+            datasets: [
+
+                {
+
+                    label:
+                        "Number of Predictions",
+
+                    data:
+                        cropCounts,
+
+                    borderWidth: 1
+
+                }
+
+            ]
+
+        },
+
+        options: commonOptions
+
+    }
+
+);
+
+
+
+/* =====================================================
+   CROP PIE CHART
+===================================================== */
+
+new Chart(
+
+    document.getElementById("cropPieChart"),
+
+    {
+
+        type: "doughnut",
+
+        data: {
+
+            labels: cropLabels,
+
+            datasets: [
+
+                {
+
+                    label:
+                        "Crop Distribution",
+
+                    data:
+                        cropCounts,
+
+                    borderWidth: 2
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                legend: {
+
+                    position: "bottom"
+
+                }
+
+            }
+
+        }
+
+    }
+
+);
+
+
+
+/* =====================================================
+   AVERAGE CROP YIELD
+===================================================== */
+
+new Chart(
+
+    document.getElementById(
+        "averageCropChart"
+    ),
+
+    {
+
+        type: "bar",
+
+        data: {
+
+            labels:
+                avgCropLabels,
+
+            datasets: [
+
+                {
+
+                    label:
+                        "Average Prediction",
+
+                    data:
+                        avgCropValues,
+
+                    borderWidth: 1
+
+                }
+
+            ]
+
+        },
+
+        options: commonOptions
+
+    }
+
+);
+
+
+
+/* =====================================================
+   YEAR CHART
+===================================================== */
+
+new Chart(
+
+    document.getElementById("yearChart"),
+
+    {
+
+        type: "line",
+
+        data: {
+
+            labels:
+                yearLabels,
+
+            datasets: [
+
+                {
+
+                    label:
+                        "Predictions",
+
+                    data:
+                        yearCounts,
+
+                    fill: false,
+
+                    tension: 0.3,
+
+                    borderWidth: 2
+
+                }
+
+            ]
+
+        },
+
+        options: commonOptions
+
+    }
+
+);
+
+
+
+/* =====================================================
+   AI VS NORMAL
+===================================================== */
+
+new Chart(
+
+    document.getElementById("typeChart"),
+
+    {
+
+        type: "pie",
+
+        data: {
+
+            labels:
+                typeLabels,
+
+            datasets: [
+
+                {
+
+                    label:
+                        "Prediction Type",
+
+                    data:
+                        typeCounts,
+
+                    borderWidth: 2
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                legend: {
+
+                    position: "bottom"
+
+                }
+
+            }
+
+        }
+
+    }
+
+);
+
+
+
+/* =====================================================
+   RAINFALL VS PREDICTION
+===================================================== */
+
+new Chart(
+
+    document.getElementById(
+        "rainfallChart"
+    ),
+
+    {
+
+        type: "scatter",
+
+        data: {
+
+            datasets: [
+
+                {
+
+                    label:
+                        "Rainfall vs Prediction",
+
+                    data:
+                        rainfallValues.map(
+
+                            function(point) {
+
+                                return {
+
+                                    x: point[0],
+
+                                    y: point[1]
+
+                                };
+
+                            }
+
+                        ),
+
+                    borderWidth: 1
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            scales: {
+
+                x: {
+
+                    title: {
+
+                        display: true,
+
+                        text:
+                            "Rainfall (mm)"
+
+                    }
+
+                },
+
+                y: {
+
+                    title: {
+
+                        display: true,
+
+                        text:
+                            "Prediction (ton/ha)"
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+);
+
+
+
+/* =====================================================
+   TEMPERATURE VS PREDICTION
+===================================================== */
+
+new Chart(
+
+    document.getElementById(
+        "temperatureChart"
+    ),
+
+    {
+
+        type: "scatter",
+
+        data: {
+
+            datasets: [
+
+                {
+
+                    label:
+                        "Temperature vs Prediction",
+
+                    data:
+                        temperatureValues.map(
+
+                            function(point) {
+
+                                return {
+
+                                    x: point[0],
+
+                                    y: point[1]
+
+                                };
+
+                            }
+
+                        ),
+
+                    borderWidth: 1
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            scales: {
+
+                x: {
+
+                    title: {
+
+                        display: true,
+
+                        text:
+                            "Temperature (°C)"
+
+                    }
+
+                },
+
+                y: {
+
+                    title: {
+
+                        display: true,
+
+                        text:
+                            "Prediction (ton/ha)"
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+);
+
+
+
+/* =====================================================
+   DOWNLOAD ANALYTICS PDF
+===================================================== */
+
+async function downloadAnalyticsPDF() {
+
+
+    const button =
+        document.getElementById(
+            "downloadPdfButton"
+        );
+
+
+    const originalText =
+        button.innerHTML;
+
+
+    button.innerHTML =
+        "⏳ Creating PDF...";
+
+
+    button.disabled = true;
+
+
+    try {
+
+
+        /* ---------------------------------------------
+           CHECK PDF LIBRARIES
+        --------------------------------------------- */
+
+        if (
+            typeof html2canvas === "undefined"
+        ) {
+
+            throw new Error(
+                "html2canvas library not loaded."
+            );
+
+        }
+
+
+        if (
+            typeof window.jspdf === "undefined"
+        ) {
+
+            throw new Error(
+                "jsPDF library not loaded."
+            );
+
+        }
+
+
+        /* ---------------------------------------------
+           GET PAGE CONTENT
+        --------------------------------------------- */
+
+        const analyticsPage =
+            document.querySelector(
+                ".page"
+            );
+
+
+        if (!analyticsPage) {
+
+            throw new Error(
+                "Analytics page not found."
+            );
+
+        }
+
+
+
+        /* ---------------------------------------------
+           HIDE BUTTONS TEMPORARILY
+        --------------------------------------------- */
+
+        const actions =
+            document.querySelector(
+                ".analytics-actions"
+            );
+
+
+        const footer =
+            document.querySelector(
+                ".footer"
+            );
+
+
+        if (actions) {
+
+            actions.style.display =
+                "none";
+
+        }
+
+
+        /* ---------------------------------------------
+           CREATE IMAGE
+        --------------------------------------------- */
+
+        const canvas =
+            await html2canvas(
+
+                analyticsPage,
+
+                {
+
+                    scale: 2,
+
+                    useCORS: true,
+
+                    allowTaint: true,
+
+                    backgroundColor:
+                        "#ffffff",
+
+                    logging: false,
+
+                    windowWidth:
+                        document.documentElement
+                            .scrollWidth,
+
+                    windowHeight:
+                        document.documentElement
+                            .scrollHeight
+
+                }
+
+            );
+
+
+
+        /* ---------------------------------------------
+           SHOW ELEMENTS AGAIN
+        --------------------------------------------- */
+
+        if (actions) {
+
+            actions.style.display =
+                "";
+
+        }
+
+
+
+        /* ---------------------------------------------
+           CREATE IMAGE DATA
+        --------------------------------------------- */
+
+        const imageData =
+            canvas.toDataURL(
+                "image/png",
+                1.0
+            );
+
+
+
+        /* ---------------------------------------------
+           CREATE PDF
+        --------------------------------------------- */
+
+        const {
+            jsPDF
+        } = window.jspdf;
+
+
+        const pdf =
+            new jsPDF(
+
+                "p",
+
+                "mm",
+
+                "a4"
+
+            );
+
+
+        const pageWidth =
+            pdf.internal.pageSize
+                .getWidth();
+
+
+        const pageHeight =
+            pdf.internal.pageSize
+                .getHeight();
+
+
+        const margin = 8;
+
+
+        const imageWidth =
+            pageWidth -
+            (margin * 2);
+
+
+        const imageHeight =
+            (
+                canvas.height *
+                imageWidth
+            ) /
+            canvas.width;
+
+
+        let heightLeft =
+            imageHeight;
+
+
+        let position =
+            margin;
+
+
+
+        /* ---------------------------------------------
+           FIRST PAGE
+        --------------------------------------------- */
+
+        pdf.addImage(
+
+            imageData,
+
+            "PNG",
+
+            margin,
+
+            position,
+
+            imageWidth,
+
+            imageHeight,
+
+            undefined,
+
+            "FAST"
+
+        );
+
+
+        heightLeft -=
+            pageHeight -
+            (margin * 2);
+
+
+
+        /* ---------------------------------------------
+           ADDITIONAL PAGES
+        --------------------------------------------- */
+
+        while (heightLeft > 0) {
+
+
+            position =
+                heightLeft -
+                imageHeight +
+                margin;
+
+
+            pdf.addPage();
+
+
+            pdf.addImage(
+
+                imageData,
+
+                "PNG",
+
+                margin,
+
+                position,
+
+                imageWidth,
+
+                imageHeight,
+
+                undefined,
+
+                "FAST"
+
+            );
+
+
+            heightLeft -=
+                pageHeight -
+                (margin * 2);
+
+        }
+
+
+
+        /* ---------------------------------------------
+           SAVE PDF
+        --------------------------------------------- */
+
+        pdf.save(
+            "Crop_Yield_AI_Analytics_Report.pdf"
+        );
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "PDF generation error:",
+            error
+        );
+
+
+        alert(
+            "Unable to generate PDF. " +
+            "Please check your internet connection " +
+            "and try again."
+        );
+
+
+    }
+
+
+    finally {
+
+
+        /* ---------------------------------------------
+           RESTORE ACTION BUTTONS
+        --------------------------------------------- */
+
+        const actions =
+            document.querySelector(
+                ".analytics-actions"
+            );
+
+
+        if (actions) {
+
+            actions.style.display =
+                "";
+
+        }
+
+
+        button.innerHTML =
+            originalText;
+
+
+        button.disabled =
+            false;
+
+
+    }
+
+}
+
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuButton =
+    document.getElementById(
+        "menuButton"
+    );
+
+
+const navMenu =
+    document.getElementById(
+        "navMenu"
+    );
+
+
+if (
+    menuButton &&
+    navMenu
+) {
+
+
+    menuButton.addEventListener(
+
+        "click",
+
+        function() {
+
+            navMenu.classList.toggle(
+                "show"
+            );
+
+        }
+
+    );
+
+
+    /* ---------------------------------------------
+       CLOSE MENU AFTER CLICK
+    --------------------------------------------- */
+
+    navMenu
+        .querySelectorAll("a")
+        .forEach(
+
+            function(link) {
+
+                link.addEventListener(
+
+                    "click",
+
+                    function() {
+
+                        navMenu.classList.remove(
+                            "show"
+                        );
+
+                    }
+
+                );
+
+            }
+
+        );
+
+}
+
+
+
+</script>
+
+
+</body>
+
+</html>

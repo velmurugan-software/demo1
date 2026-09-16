@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Crop Yield Result</title>
+
+
+    <!-- =====================================================
+         LEAFLET MAP
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+
+    <!-- =====================================================
+         PDF LIBRARIES
+    ====================================================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+    </script>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f6;
+            color: #1f2937;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ====================================================== */
+
+        .header {
+            background: #14532d;
+            color: white;
+            padding: 18px 30px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .header h1 {
+            font-size: 24px;
+        }
+
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            background: #166534;
+
+            padding: 10px 16px;
+
+            border-radius: 8px;
+        }
+
+
+        /* =====================================================
+           CONTAINER
+        ====================================================== */
+
+        .container {
+            width: 94%;
+            max-width: 1300px;
+            margin: 25px auto;
+        }
+
+
+        /* =====================================================
+           WELCOME
+        ====================================================== */
+
+        .welcome {
+            margin-bottom: 20px;
+        }
+
+
+        .welcome h2 {
+            color: #14532d;
+            margin-bottom: 5px;
+        }
+
+
+        /* =====================================================
+           GRID
+        ====================================================== */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+
+        /* =====================================================
+           CARD
+        ====================================================== */
+
+        .card {
+            background: white;
+            border-radius: 14px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.08);
+        }
+
+
+        .card.full {
+            grid-column: 1 / -1;
+        }
+
+
+        .card h3 {
+            color: #166534;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+
+        /* =====================================================
+           INFO ROW
+        ====================================================== */
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 10px 0;
+
+            border-bottom:
+                1px solid #e5e7eb;
+        }
+
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .label {
+            font-weight: bold;
+            color: #4b5563;
+        }
+
+
+        .value {
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           PREDICTION
+        ====================================================== */
+
+        .prediction {
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #166534,
+                    #15803d
+                );
+
+            color: white;
+        }
+
+
+        .prediction h3 {
+            color: white;
+        }
+
+
+        .prediction-value {
+            font-size: 42px;
+            font-weight: bold;
+
+            margin: 15px 0;
+        }
+
+
+        .production {
+            font-size: 20px;
+        }
+
+
+        /* =====================================================
+           MAP
+        ====================================================== */
+
+        #map {
+            height: 350px;
+            width: 100%;
+
+            border-radius: 12px;
+
+            margin-top: 10px;
+        }
+
+
+        /* =====================================================
+           WEATHER
+        ====================================================== */
+
+        .weather-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .weather-box {
+            background: #f0fdf4;
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+            text-align: center;
+        }
+
+
+        .weather-box .icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+
+        .weather-box strong {
+            display: block;
+
+            font-size: 18px;
+
+            margin-top: 5px;
+        }
+
+
+        /* =====================================================
+           ANALYSIS
+        ====================================================== */
+
+        .analysis {
+            background: #ecfdf5;
+
+            border-left:
+                5px solid #16a34a;
+
+            padding: 18px;
+
+            border-radius: 8px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           RECOMMENDATION
+        ====================================================== */
+
+        .recommendation {
+            background: #fff7ed;
+
+            border-left:
+                5px solid #f97316;
+
+            padding: 18px;
+
+            border-radius: 8px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           NEWS
+        ====================================================== */
+
+        .news-item {
+            padding: 15px;
+
+            border-bottom:
+                1px solid #e5e7eb;
+        }
+
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+
+        .news-item h4 {
+            color: #14532d;
+            margin-bottom: 7px;
+        }
+
+
+        .news-item a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+
+        .news-item a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           DATASET
+        ====================================================== */
+
+        .dataset-box {
+            background: #f9fafb;
+
+            padding: 15px;
+
+            border-radius: 10px;
+        }
+
+
+        /* =====================================================
+           BADGE
+        ====================================================== */
+
+        .badge {
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            background: #dcfce7;
+
+            color: #166534;
+
+            font-weight: bold;
+
+            margin-top: 8px;
+        }
+
+
+        /* =====================================================
+           ERROR
+        ====================================================== */
+
+        .error {
+            background: #fee2e2;
+
+            color: #991b1b;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================================
+           BUTTON AREA
+        ====================================================== */
+
+        .action-buttons {
+            display: flex;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            margin-top: 20px;
+        }
+
+
+        /* =====================================================
+           BACK BUTTON
+        ====================================================== */
+
+        .back-btn {
+            display: inline-block;
+
+            padding: 12px 20px;
+
+            background: #166534;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            border: none;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            font-weight: 600;
+        }
+
+
+        .back-btn:hover {
+            background: #14532d;
+        }
+
+
+        /* =====================================================
+           PDF BUTTON
+        ====================================================== */
+
+        .pdf-btn {
+            display: inline-block;
+
+            padding: 12px 20px;
+
+            background: #2563eb;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            transition: 0.3s ease;
+        }
+
+
+        .pdf-btn:hover {
+            background: #1d4ed8;
+
+            transform: translateY(-1px);
+        }
+
+
+        .pdf-btn:disabled {
+            opacity: 0.7;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media (max-width: 900px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .card.full {
+                grid-column: auto;
+            }
+
+
+            .weather-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .weather-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .header {
+                padding: 15px;
+
+                flex-direction: column;
+
+                gap: 12px;
+
+                text-align: center;
+            }
+
+
+            .container {
+                width: 96%;
+            }
+
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+
+            .back-btn,
+            .pdf-btn {
+                width: 100%;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+
+    <h1>
+        🌾 Crop Yield AI
+    </h1>
+
+
+    <div>
+
+        <span style="margin-right:15px;">
+
+            Hello, {{ username }}
+
+        </span>
+
+
+        <a href="{{ url_for('logout') }}">
+
+            Logout
+
+        </a>
+
+    </div>
+
+
+</header>
+
+
+
+<!-- =====================================================
+     PDF CAPTURE AREA
+===================================================== -->
+
+<div
+    class="container"
+    id="pdfContent"
+>
+
+
+    <!-- =================================================
+         WELCOME
+    ================================================== -->
+
+    <div class="welcome">
+
+
+        <h2>
+
+            🤖 AI Crop Yield Analysis
+
+        </h2>
+
+
+        <p>
+
+            AI-generated crop yield analysis using
+            location, current weather, historical
+            agricultural data and recent agriculture
+            information.
+
+        </p>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         ERROR
+    ================================================== -->
+
+    {% if error %}
+
+        <div class="error">
+
+            <strong>
+                AI Error:
+            </strong>
+
+            {{ error }}
+
+        </div>
+
+    {% endif %}
+
+
+
+    <!-- =================================================
+         LOCATION + PREDICTION
+    ================================================== -->
+
+    <div class="grid">
+
+
+        <!-- LOCATION -->
+
+        <div class="card">
+
+
+            <h3>
+                📍 Selected Location
+            </h3>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    Location
+                </span>
+
+                <span class="value">
+                    {{ data.location }}
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    State
+                </span>
+
+                <span class="value">
+                    {{ data.state }}
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    District
+                </span>
+
+                <span class="value">
+                    {{ data.district }}
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    Crop
+                </span>
+
+                <span class="value">
+                    {{ data.crop }}
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    Area
+                </span>
+
+                <span class="value">
+                    {{ data.area }} ha
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- PREDICTION -->
+
+        <div class="card prediction">
+
+
+            <h3>
+                🌱 AI Predicted Yield
+            </h3>
+
+
+            {% if prediction is not none %}
+
+
+                <div class="prediction-value">
+
+                    {{ prediction }}
+
+                </div>
+
+
+                <div>
+                    Estimated Yield
+                </div>
+
+
+                <div class="production">
+
+                    Estimated Production:
+
+                    <strong>
+
+                        {{ estimated_production }}
+
+                    </strong>
+
+                </div>
+
+
+                <span class="badge">
+
+                    AI Prediction
+
+                </span>
+
+
+            {% else %}
+
+
+                <p>
+
+                    Prediction unavailable.
+
+                </p>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         MAP
+    ================================================== -->
+
+    <div
+        class="card full"
+        style="margin-top:20px;"
+    >
+
+
+        <h3>
+            🗺️ Location Map
+        </h3>
+
+
+        <div id="map"></div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         CURRENT WEATHER
+    ================================================== -->
+
+    <div class="card full">
+
+
+        <h3>
+            🌤️ Current Weather
+        </h3>
+
+
+        {% if weather %}
+
+
+            <div class="weather-grid">
+
+
+                <div class="weather-box">
+
+                    <div class="icon">
+                        🌡️
+                    </div>
+
+                    Temperature
+
+                    <strong>
+
+                        {{ weather.temperature }}
+                        °C
+
+                    </strong>
+
+                </div>
+
+
+
+                <div class="weather-box">
+
+                    <div class="icon">
+                        💧
+                    </div>
+
+                    Humidity
+
+                    <strong>
+
+                        {{ weather.humidity }}
+                        %
+
+                    </strong>
+
+                </div>
+
+
+
+                <div class="weather-box">
+
+                    <div class="icon">
+                        🌧️
+                    </div>
+
+                    Rain
+
+                    <strong>
+
+                        {{ weather.rain }}
+                        mm
+
+                    </strong>
+
+                </div>
+
+
+
+                <div class="weather-box">
+
+                    <div class="icon">
+                        💨
+                    </div>
+
+                    Wind
+
+                    <strong>
+
+                        {{ weather.wind }}
+                        km/h
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <p>
+
+                Current weather information is unavailable.
+
+            </p>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         HISTORICAL DATASET
+    ================================================== -->
+
+    <div class="card">
+
+
+        <h3>
+            📊 Historical Crop Data
+        </h3>
+
+
+        <div class="dataset-box">
+
+
+            {% if historical %}
+
+
+                <div class="info-row">
+
+                    <span class="label">
+                        Matching Records
+                    </span>
+
+                    <span class="value">
+                        {{ historical.records }}
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span class="label">
+                        Average Historical Yield
+                    </span>
+
+                    <span class="value">
+                        {{ historical.average_yield }}
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span class="label">
+                        Historical Maximum
+                    </span>
+
+                    <span class="value">
+                        {{ historical.max_yield }}
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span class="label">
+                        Historical Minimum
+                    </span>
+
+                    <span class="value">
+                        {{ historical.min_yield }}
+                    </span>
+
+                </div>
+
+
+            {% else %}
+
+
+                <p>
+
+                    No matching historical dataset
+                    information.
+
+                </p>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         AI ANALYSIS
+    ================================================== -->
+
+    <div class="card">
+
+
+        <h3>
+            🤖 AI Analysis
+        </h3>
+
+
+        <div class="analysis">
+
+
+            {% if ai_analysis %}
+
+                {{ ai_analysis }}
+
+            {% else %}
+
+                AI analysis is unavailable.
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         EXPLANATION
+    ================================================== -->
+
+    <div class="card full">
+
+
+        <h3>
+            💡 AI Explanation
+        </h3>
+
+
+        <div class="analysis">
+
+
+            {% if explanation %}
+
+                {{ explanation }}
+
+            {% else %}
+
+                The AI explanation is unavailable.
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         RECOMMENDATION
+    ================================================== -->
+
+    <div class="card full">
+
+
+        <h3>
+            🌾 AI Recommendation
+        </h3>
+
+
+        <div class="recommendation">
+
+
+            {% if recommendation %}
+
+                {{ recommendation }}
+
+            {% else %}
+
+                No recommendation is currently available.
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         AGRICULTURE NEWS
+    ================================================== -->
+
+    <div class="card full">
+
+
+        <h3>
+            📰 Recent Agriculture Information
+        </h3>
+
+
+        {% if news %}
+
+
+            {% for item in news %}
+
+
+                <div class="news-item">
+
+
+                    <h4>
+
+                        {{ item.title }}
+
+                    </h4>
+
+
+                    {% if item.description %}
+
+                        <p>
+
+                            {{ item.description }}
+
+                        </p>
+
+                    {% endif %}
+
+
+                    {% if item.url %}
+
+                        <br>
+
+
+                        <a
+                            href="{{ item.url }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            Read more →
+
+                        </a>
+
+                    {% endif %}
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <p>
+
+                No recent agriculture news available.
+
+            </p>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     ACTION BUTTONS
+===================================================== -->
+
+<div
+    class="container"
+    id="actionArea"
+>
+
+
+    <div class="action-buttons">
+
+
+        <!-- BACK -->
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="back-btn"
+        >
+
+            ← Back to Dashboard
+
+        </a>
+
+
+        <!-- DOWNLOAD PDF -->
+
+        <button
+            type="button"
+            class="pdf-btn"
+            id="downloadPdfButton"
+            onclick="downloadAIResultPDF()"
+        >
+
+            📥 Download AI Result PDF
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     LEAFLET
+===================================================== -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+
+<script>
+
+
+/* =====================================================
+   LOCATION DATA
+===================================================== */
+
+const latitude =
+    {{ latitude|default(0)|tojson }};
+
+
+const longitude =
+    {{ longitude|default(0)|tojson }};
+
+
+const locationName =
+    {{ data.location|default("Selected Location")|tojson }};
+
+
+
+/* =====================================================
+   CREATE MAP
+===================================================== */
+
+if (
+    latitude &&
+    longitude
+) {
+
+
+    const map =
+        L.map("map").setView(
+
+            [
+                latitude,
+                longitude
+            ],
+
+            12
+
+        );
+
+
+    L.tileLayer(
+
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+
+        {
+
+            maxZoom: 19,
+
+            attribution:
+                "&copy; OpenStreetMap contributors"
+
+        }
+
+    ).addTo(map);
+
+
+    L.marker(
+
+        [
+            latitude,
+            longitude
+        ]
+
+    )
+
+    .addTo(map)
+
+    .bindPopup(
+
+        "<b>" +
+        locationName +
+        "</b>"
+
+    )
+
+    .openPopup();
+
+
+}
+
+
+else {
+
+
+    document.getElementById("map").innerHTML =
+
+        "<div style='padding:30px;text-align:center;'>" +
+
+        "Map location is unavailable." +
+
+        "</div>";
+
+}
+
+
+
+/* =====================================================
+   DOWNLOAD AI RESULT PDF
+===================================================== */
+
+async function downloadAIResultPDF() {
+
+
+    const button =
+        document.getElementById(
+            "downloadPdfButton"
+        );
+
+
+    const originalText =
+        button.innerHTML;
+
+
+    button.innerHTML =
+        "⏳ Creating PDF...";
+
+
+    button.disabled =
+        true;
+
+
+    try {
+
+
+        /* =============================================
+           CHECK LIBRARIES
+        ============================================== */
+
+        if (
+            typeof html2canvas === "undefined"
+        ) {
+
+            throw new Error(
+                "html2canvas is not loaded."
+            );
+
+        }
+
+
+        if (
+            typeof window.jspdf === "undefined"
+        ) {
+
+            throw new Error(
+                "jsPDF is not loaded."
+            );
+
+        }
+
+
+
+        /* =============================================
+           GET CONTENT
+        ============================================== */
+
+        const content =
+            document.getElementById(
+                "pdfContent"
+            );
+
+
+        if (!content) {
+
+            throw new Error(
+                "PDF content not found."
+            );
+
+        }
+
+
+
+        /* =============================================
+           HIDE MAP TEMPORARILY
+        ============================================== */
+
+        const mapElement =
+            document.getElementById("map");
+
+
+        /*
+         * Leaflet maps can sometimes render
+         * incorrectly in html2canvas.
+         *
+         * We keep the map visible but make sure
+         * the current map is rendered before capture.
+         */
+
+        if (mapElement) {
+
+            mapElement.style.background =
+                "#e5e7eb";
+
+        }
+
+
+
+        /* =============================================
+           CAPTURE PAGE
+        ============================================== */
+
+        const canvas =
+            await html2canvas(
+
+                content,
+
+                {
+
+                    scale: 1.5,
+
+                    useCORS: true,
+
+                    allowTaint: true,
+
+                    backgroundColor:
+                        "#f4f7f6",
+
+                    logging: false,
+
+                    imageTimeout: 15000
+
+                }
+
+            );
+
+
+
+        /* =============================================
+           IMAGE
+        ============================================== */
+
+        const imageData =
+            canvas.toDataURL(
+
+                "image/jpeg",
+
+                0.95
+
+            );
+
+
+
+        /* =============================================
+           CREATE PDF
+        ============================================== */
+
+        const {
+            jsPDF
+        } = window.jspdf;
+
+
+        const pdf =
+            new jsPDF(
+
+                "p",
+
+                "mm",
+
+                "a4"
+
+            );
+
+
+        const pageWidth =
+            pdf.internal.pageSize.getWidth();
+
+
+        const pageHeight =
+            pdf.internal.pageSize.getHeight();
+
+
+        const margin =
+            8;
+
+
+        const pdfWidth =
+            pageWidth -
+            (margin * 2);
+
+
+        const pdfHeight =
+            (
+                canvas.height *
+                pdfWidth
+            ) /
+            canvas.width;
+
+
+        const usableHeight =
+            pageHeight -
+            (margin * 2);
+
+
+
+        /* =============================================
+           MULTI-PAGE PDF
+        ============================================== */
+
+        let remainingHeight =
+            pdfHeight;
+
+
+        let sourceY =
+            0;
+
+
+        let pageNumber =
+            0;
+
+
+        while (
+            remainingHeight > 0
+        ) {
+
+
+            if (pageNumber > 0) {
+
+                pdf.addPage();
+
+            }
+
+
+            const currentPageHeight =
+                Math.min(
+
+                    usableHeight,
+
+                    remainingHeight
+
+                );
+
+
+            /*
+             * Calculate corresponding source
+             * image height.
+             */
+
+            const sourceHeight =
+                (
+                    currentPageHeight *
+                    canvas.width
+                ) /
+                pdfWidth;
+
+
+            /*
+             * Create temporary canvas for
+             * current PDF page.
+             */
+
+            const pageCanvas =
+                document.createElement(
+                    "canvas"
+                );
+
+
+            pageCanvas.width =
+                canvas.width;
+
+
+            pageCanvas.height =
+                Math.ceil(
+                    sourceHeight
+                );
+
+
+            const pageContext =
+                pageCanvas.getContext(
+                    "2d"
+                );
+
+
+            pageContext.fillStyle =
+                "#f4f7f6";
+
+
+            pageContext.fillRect(
+
+                0,
+
+                0,
+
+                pageCanvas.width,
+
+                pageCanvas.height
+
+            );
+
+
+            pageContext.drawImage(
+
+                canvas,
+
+                0,
+
+                sourceY,
+
+                canvas.width,
+
+                sourceHeight,
+
+                0,
+
+                0,
+
+                canvas.width,
+
+                sourceHeight
+
+            );
+
+
+            const pageImage =
+                pageCanvas.toDataURL(
+
+                    "image/jpeg",
+
+                    0.95
+
+                );
+
+
+            pdf.addImage(
+
+                pageImage,
+
+                "JPEG",
+
+                margin,
+
+                margin,
+
+                pdfWidth,
+
+                currentPageHeight,
+
+                undefined,
+
+                "FAST"
+
+            );
+
+
+            sourceY +=
+                sourceHeight;
+
+
+            remainingHeight -=
+                currentPageHeight;
+
+
+            pageNumber++;
+
+        }
+
+
+
+        /* =============================================
+           PDF METADATA
+        ============================================== */
+
+        pdf.setProperties({
+
+            title:
+                "Crop Yield AI - AI Crop Yield Result",
+
+            subject:
+                "AI Crop Yield Analysis",
+
+            author:
+                "Crop Yield AI",
+
+            creator:
+                "Crop Yield AI Smart Agriculture System"
+
+        });
+
+
+
+        /* =============================================
+           SAVE
+        ============================================== */
+
+        pdf.save(
+
+            "Crop_Yield_AI_Result.pdf"
+
+        );
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "PDF generation error:",
+            error
+        );
+
+
+        alert(
+
+            "Unable to generate PDF.\n\n" +
+
+            "Please try again."
+
+        );
+
+    }
+
+
+    finally {
+
+
+        /* =============================================
+           RESTORE BUTTON
+        ============================================== */
+
+        button.innerHTML =
+            originalText;
+
+
+        button.disabled =
+            false;
+
+
+    }
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

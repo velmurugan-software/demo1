@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+India Crop Yield AI
+</title>
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}"
+>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        🌾 India Crop Yield AI
+    </div>
+
+    <nav>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="#prediction">
+            Prediction
+        </a>
+
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <div>
+
+        <div class="tag">
+            🇮🇳 INDIAN AGRICULTURE
+        </div>
+
+        <h1>
+            Crop Yield
+            <span>Prediction AI</span>
+        </h1>
+
+        <p>
+            Machine learning based crop yield
+            prediction using real agricultural data.
+        </p>
+
+        <a
+            href="#prediction"
+            class="button"
+        >
+            Start Prediction
+        </a>
+
+    </div>
+
+</section>
+
+
+<section
+    id="prediction"
+    class="prediction"
+>
+
+
+<h2>
+    Crop Yield Prediction
+</h2>
+
+<p class="subtitle">
+    Enter the available information from your dataset.
+</p>
+
+
+<form
+    action="/predict"
+    method="POST"
+>
+
+
+<div class="grid">
+
+
+<div class="field">
+
+<label>
+State
+</label>
+
+<select name="state">
+
+<option value="">
+Select State
+</option>
+
+{% for state in states %}
+
+<option value="{{ state }}">
+{{ state }}
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+District
+</label>
+
+<select name="district">
+
+<option value="">
+Select District
+</option>
+
+{% for district in districts %}
+
+<option value="{{ district }}">
+{{ district }}
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Crop
+</label>
+
+<select name="crop">
+
+<option value="">
+Select Crop
+</option>
+
+{% for crop in crops %}
+
+<option value="{{ crop }}">
+{{ crop }}
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Season
+</label>
+
+<select name="season">
+
+<option value="">
+Select Season
+</option>
+
+{% for season in seasons %}
+
+<option value="{{ season }}">
+{{ season }}
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Year
+</label>
+
+<input
+    type="number"
+    name="year"
+    value="2026"
+>
+
+
+</div>
+
+
+<div class="field">
+
+<label>
+Area
+</label>
+
+<input
+    type="number"
+    step="0.01"
+    name="area"
+    placeholder="Enter area"
+>
+
+
+</div>
+
+
+<div class="field">
+
+<label>
+Production
+</label>
+
+<input
+    type="number"
+    step="0.01"
+    name="production"
+    placeholder="Optional"
+>
+
+
+</div>
+
+
+</div>
+
+
+<button
+    type="submit"
+>
+    🔮 Predict Yield
+</button>
+
+
+</form>
+
+
+</section>
+
+
+<footer>
+
+India Crop Yield Prediction AI © 2026
+
+</footer>
+
+
+</body>
+
+</html>

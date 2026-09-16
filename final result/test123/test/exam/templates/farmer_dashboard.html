@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Crop Yield AI - Smart Agriculture Prediction System">
+
+    <title>Crop Yield AI | Smart Agriculture</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/farmer1.css') }}">
+</head>
+
+
+<body>
+
+<div class="background-overlay"></div>
+
+<div class="page">
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <!-- LOGO -->
+
+        <a href="#home" class="logo">
+
+            <div class="logo-icon">
+                🌾
+            </div>
+
+            <div class="logo-text">
+
+                <span class="logo-title">
+                    Crop Yield AI
+                </span>
+
+                <span class="logo-subtitle">
+                    Smart Agriculture
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="nav-menu" id="navMenu">
+
+            <!-- HOME -->
+
+            <a href="#home"
+               class="nav-link active">
+                Home
+            </a>
+
+
+            <!-- SOLUTIONS -->
+
+            <a href="{{ url_for('solutions') }}"
+               class="nav-link">
+                Solutions
+            </a>
+
+
+            <!-- FOR WHOM -->
+
+            <a href="{{ url_for('for_whom') }}"
+               class="nav-link">
+                For Whom
+            </a>
+
+
+            <!-- HISTORY -->
+
+            <a href="{{ url_for('history') }}"
+               class="nav-link">
+                History
+            </a>
+
+
+            <!-- ANALYTICS -->
+
+            <a href="{{ url_for('analytics') }}"
+               class="nav-link">
+                Analytics
+            </a>
+
+
+            <!-- ABOUT -->
+
+            <a href="#about"
+               class="nav-link">
+                About Us
+            </a>
+
+
+            <!-- CAREERS -->
+
+            <a href="{{ url_for('careers') }}"
+               class="nav-link">
+                Careers
+            </a>
+
+        </nav>
+
+
+        <!-- NAV RIGHT -->
+
+        <div class="nav-right">
+
+            <span class="language">
+                EN
+            </span>
+
+
+            {% if username %}
+
+                <span class="nav-user">
+                    Hi, {{ username }}
+                </span>
+
+                <a href="{{ url_for('logout') }}"
+                   class="login-button">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="{{ url_for('login') }}"
+                   class="login-button">
+                    Login
+                </a>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- MOBILE MENU -->
+
+        <button type="button"
+                class="menu-button"
+                id="menuButton"
+                aria-label="Open Menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section id="home"
+             class="hero-section">
+
+        <div class="hero-content">
+
+
+            <!-- HERO BADGE -->
+
+            <div class="hero-badge">
+
+                <span>
+                    🌱
+                </span>
+
+                AI POWERED AGRICULTURE
+
+            </div>
+
+
+            <!-- HERO TITLE -->
+
+            <h1>
+
+                Smart Farming.
+
+                <br>
+
+                <span>
+                    Better Crop Yield.
+                </span>
+
+            </h1>
+
+
+            <!-- DESCRIPTION -->
+
+            <p class="hero-description">
+
+                Make smarter agricultural decisions with
+                machine learning and artificial intelligence.
+                Predict crop yield using your farm, soil,
+                weather and location data.
+
+            </p>
+
+
+            <!-- HERO BUTTONS -->
+
+            <div class="hero-buttons">
+
+
+                <!-- NORMAL -->
+
+                <button type="button"
+                        onclick="showNormal()"
+                        class="hero-primary">
+
+                    <span>
+                        📊
+                    </span>
+
+                    Normal Prediction
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+
+                <!-- AI -->
+
+                <button type="button"
+                        onclick="showAI()"
+                        class="hero-secondary">
+
+                    <span>
+                        🤖
+                    </span>
+
+                    AI Prediction
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- HERO STATS -->
+
+            <div class="hero-stats">
+
+                <div class="hero-stat">
+
+                    <strong>
+                        AI
+                    </strong>
+
+                    <span>
+                        Smart Analysis
+                    </span>
+
+                </div>
+
+
+                <div class="hero-stat">
+
+                    <strong>
+                        ML
+                    </strong>
+
+                    <span>
+                        Crop Prediction
+                    </span>
+
+                </div>
+
+
+                <div class="hero-stat">
+
+                    <strong>
+                        🌱
+                    </strong>
+
+                    <span>
+                        Smart Farming
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HERO CARD -->
+
+        <div class="hero-card">
+
+            <div class="hero-card-glow"></div>
+
+            <div class="hero-card-icon">
+                🌾
+            </div>
+
+            <span>
+                CROP YIELD AI
+            </span>
+
+            <h2>
+                Intelligent Agriculture
+            </h2>
+
+            <p>
+                Turn agricultural data into
+                meaningful crop yield predictions.
+            </p>
+
+            <div class="hero-card-bottom">
+
+                <span>
+                    📍 Location
+                </span>
+
+                <span>
+                    🌦️ Weather
+                </span>
+
+                <span>
+                    🌱 Soil
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SOLUTIONS PREVIEW
+    ====================================================== -->
+
+    <section id="solutions-preview"
+             class="info-section">
+
+        <div class="section-heading">
+
+            <span>
+                OUR SOLUTIONS
+            </span>
+
+            <h2>
+                Technology for Modern Agriculture
+            </h2>
+
+            <p>
+                Powerful tools designed to help farmers
+                make better cultivation decisions.
+            </p>
+
+        </div>
+
+
+        <div class="info-grid">
+
+
+            <!-- NORMAL -->
+
+            <div class="info-card">
+
+                <div class="info-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Normal Prediction
+                </h3>
+
+                <p>
+                    Use crop, location, soil and environmental
+                    information with a trained machine learning
+                    model to estimate crop yield.
+                </p>
+
+            </div>
+
+
+            <!-- AI -->
+
+            <div class="info-card">
+
+                <div class="info-icon">
+                    🤖
+                </div>
+
+                <h3>
+                    AI Prediction
+                </h3>
+
+                <p>
+                    Provide your location, crop and area.
+                    AI can automatically process environmental
+                    information before prediction.
+                </p>
+
+            </div>
+
+
+            <!-- ANALYTICS -->
+
+            <div class="info-card">
+
+                <div class="info-icon">
+                    📈
+                </div>
+
+                <h3>
+                    Smart Analytics
+                </h3>
+
+                <p>
+                    Analyze agricultural information and
+                    understand crop performance using
+                    data-driven insights.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- OPEN SOLUTIONS PAGE -->
+
+        <div class="analytics-page-button">
+
+            <a href="{{ url_for('solutions') }}"
+               class="outline-button">
+
+                🌾 Open Live Crop Solutions →
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         HISTORY PREVIEW
+    ====================================================== -->
+
+    <section id="history"
+             class="info-section">
+
+        <div class="section-heading">
+
+            <span>
+                HISTORY
+            </span>
+
+            <h2>
+                Your Prediction History
+            </h2>
+
+            <p>
+                Review your previous crop yield predictions.
+            </p>
+
+        </div>
+
+
+        <div class="history-box">
+
+            <div class="history-icon">
+                📋
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Prediction Records
+                </h3>
+
+                <p>
+                    View all your previous Normal and AI
+                    crop yield predictions.
+                </p>
+
+            </div>
+
+
+            <a href="{{ url_for('history') }}"
+               class="outline-button">
+
+                View Prediction History →
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ANALYTICS
+    ====================================================== -->
+
+    <section id="analytics-preview"
+             class="dark-section">
+
+        <div class="section-heading">
+
+            <span>
+                ANALYTICS
+            </span>
+
+            <h2>
+                Agricultural Insights
+            </h2>
+
+            <p>
+                Understand your farm data through
+                intelligent analysis.
+            </p>
+
+        </div>
+
+
+        <div class="analytics-grid">
+
+
+            <!-- CROP -->
+
+            <div class="analytics-card">
+
+                <div class="analytics-top">
+
+                    <span>
+                        🌾
+                    </span>
+
+                    <small>
+                        CROP
+                    </small>
+
+                </div>
+
+                <h3>
+                    Crop Performance
+                </h3>
+
+                <p>
+                    Analyze expected crop yield
+                    based on available data.
+                </p>
+
+            </div>
+
+
+            <!-- ENVIRONMENT -->
+
+            <div class="analytics-card">
+
+                <div class="analytics-top">
+
+                    <span>
+                        🌦️
+                    </span>
+
+                    <small>
+                        ENVIRONMENT
+                    </small>
+
+                </div>
+
+                <h3>
+                    Weather Analysis
+                </h3>
+
+                <p>
+                    Use environmental conditions
+                    to improve agricultural decisions.
+                </p>
+
+            </div>
+
+
+            <!-- DATA -->
+
+            <div class="analytics-card">
+
+                <div class="analytics-top">
+
+                    <span>
+                        📈
+                    </span>
+
+                    <small>
+                        DATA
+                    </small>
+
+                </div>
+
+                <h3>
+                    Data Insights
+                </h3>
+
+                <p>
+                    Convert farm information into
+                    useful agricultural insights.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FULL ANALYTICS -->
+
+        <div class="analytics-page-button">
+
+            <a href="{{ url_for('analytics') }}"
+               class="outline-button">
+
+                📊 View Full Analytics →
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PREDICTION CENTER
+    ====================================================== -->
+
+    <section id="prediction"
+             class="prediction-section">
+
+        <div class="section-heading">
+
+            <span>
+                PREDICTION CENTER
+            </span>
+
+            <h2>
+                Choose Your Prediction Method
+            </h2>
+
+            <p>
+                Select machine learning or AI-powered
+                crop yield prediction.
+            </p>
+
+        </div>
+
+
+
+        <!-- MODE SELECTION -->
+
+        <div id="modeSelection"
+             class="mode-container">
+
+
+            <!-- NORMAL -->
+
+            <div class="mode-card normal-card">
+
+                <div class="mode-icon">
+                    📊
+                </div>
+
+                <span class="card-tag">
+                    MACHINE LEARNING
+                </span>
+
+                <h2>
+                    Normal Prediction
+                </h2>
+
+                <p>
+                    Enter crop, location, weather and soil
+                    information to predict crop yield
+                    using your trained machine learning model.
+                </p>
+
+
+                <div class="card-features">
+
+                    <span>
+                        ✓ Crop Details
+                    </span>
+
+                    <span>
+                        ✓ Location
+                    </span>
+
+                    <span>
+                        ✓ Weather
+                    </span>
+
+                    <span>
+                        ✓ Soil Data
+                    </span>
+
+                </div>
+
+
+                <button type="button"
+                        onclick="showNormal()"
+                        class="mode-button normal-button">
+
+                    <span>
+                        📊
+                    </span>
+
+                    NORMAL PREDICTION
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- AI -->
+
+            <div class="mode-card ai-card">
+
+                <div class="mode-icon">
+                    🤖
+                </div>
+
+                <span class="card-tag ai-tag">
+                    ARTIFICIAL INTELLIGENCE
+                </span>
+
+                <h2>
+                    AI Prediction
+                </h2>
+
+                <p>
+                    Enter only your location, crop and
+                    cultivation area. AI handles the
+                    environmental information.
+                </p>
+
+
+                <div class="card-features">
+
+                    <span>
+                        ✓ Live Environment
+                    </span>
+
+                    <span>
+                        ✓ Temperature
+                    </span>
+
+                    <span>
+                        ✓ Humidity
+                    </span>
+
+                    <span>
+                        ✓ Smart Analysis
+                    </span>
+
+                </div>
+
+
+                <button type="button"
+                        onclick="showAI()"
+                        class="mode-button ai-button">
+
+                    <span>
+                        🤖
+                    </span>
+
+                    AI PREDICTION
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             NORMAL PREDICTION FORM
+        ================================================== -->
+
+        <section id="normalSection"
+                 class="prediction-form-section hidden">
+
+            <button type="button"
+                    onclick="backToModes()"
+                    class="back-button">
+
+                ← Back to Prediction Methods
+
+            </button>
+
+
+            <div class="form-card">
+
+
+                <!-- FORM HEADER -->
+
+                <div class="form-header">
+
+                    <div class="form-icon">
+                        🌾
+                    </div>
+
+                    <div>
+
+                        <span class="form-label">
+                            CROP ANALYSIS
+                        </span>
+
+                        <h2>
+                            Normal Crop Yield Prediction
+                        </h2>
+
+                        <p>
+                            Enter your farming details
+                            to predict crop yield.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <form method="POST"
+                      action="{{ url_for('predict') }}">
+
+
+                    <!-- LOCATION -->
+
+                    <div class="form-block">
+
+                        <div class="block-title">
+
+                            <span>
+                                📍
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Location Details
+                                </h3>
+
+                                <p>
+                                    Select your farming location
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="grid">
+
+
+                            <!-- STATE -->
+
+                            <div class="field">
+
+                                <label>
+                                    State
+                                    <span>*</span>
+                                </label>
+
+                                <select name="state"
+                                        required>
+
+                                    <option value="">
+                                        Select State
+                                    </option>
+
+                                    {% for state in states %}
+
+                                    <option value="{{ state }}">
+                                        {{ state }}
+                                    </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- DISTRICT -->
+
+                            <div class="field">
+
+                                <label>
+                                    District
+                                    <span>*</span>
+                                </label>
+
+                                <select name="district"
+                                        required>
+
+                                    <option value="">
+                                        Select District
+                                    </option>
+
+                                    {% for district in districts %}
+
+                                    <option value="{{ district }}">
+                                        {{ district }}
+                                    </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- CROP -->
+
+                    <div class="form-block">
+
+                        <div class="block-title">
+
+                            <span>
+                                🌱
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Crop Details
+                                </h3>
+
+                                <p>
+                                    Select crop and cultivation
+                                    information
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="grid">
+
+
+                            <!-- CROP -->
+
+                            <div class="field">
+
+                                <label>
+                                    Crop
+                                    <span>*</span>
+                                </label>
+
+                                <select name="crop"
+                                        required>
+
+                                    <option value="">
+                                        Select Crop
+                                    </option>
+
+                                    {% for crop in crops %}
+
+                                    <option value="{{ crop }}">
+                                        {{ crop }}
+                                    </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- SEASON -->
+
+                            <div class="field">
+
+                                <label>
+                                    Season
+                                    <span>*</span>
+                                </label>
+
+                                <select name="season"
+                                        required>
+
+                                    <option value="">
+                                        Select Season
+                                    </option>
+
+                                    {% for season in seasons %}
+
+                                    <option value="{{ season }}">
+                                        {{ season }}
+                                    </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- YEAR -->
+
+                            <div class="field">
+
+                                <label>
+                                    Prediction Year
+                                    <span>*</span>
+                                </label>
+
+                                <select name="year"
+                                        required>
+
+                                    <option value="">
+                                        Select Year
+                                    </option>
+
+                                    {% for year in years %}
+
+                                    <option value="{{ year }}">
+                                        {{ year }}
+                                    </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- MONTH -->
+
+                            <div class="field">
+
+                                <label>
+                                    Month
+                                    <span>*</span>
+                                </label>
+
+                                <select name="month"
+                                        required>
+
+                                    <option value="">
+                                        Select Month
+                                    </option>
+
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- FARM DATA -->
+
+                    <div class="form-block">
+
+                        <div class="block-title">
+
+                            <span>
+                                🌦️
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Farm & Environmental Data
+                                </h3>
+
+                                <p>
+                                    Enter current field conditions
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="grid">
+
+
+                            <!-- AREA -->
+
+                            <div class="field">
+
+                                <label>
+                                    Area
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-unit">
+
+                                    <input type="number"
+                                           step="any"
+                                           min="0.01"
+                                           name="area"
+                                           placeholder="Example: 10"
+                                           required>
+
+                                    <span>
+                                        ha
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- RAINFALL -->
+
+                            <div class="field">
+
+                                <label>
+                                    Rainfall
+                                </label>
+
+                                <div class="input-unit">
+
+                                    <input type="number"
+                                           step="any"
+                                           min="0"
+                                           name="rainfall_mm"
+                                           value="0"
+                                           placeholder="Example: 850">
+
+                                    <span>
+                                        mm
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- TEMPERATURE -->
+
+                            <div class="field">
+
+                                <label>
+                                    Temperature
+                                </label>
+
+                                <div class="input-unit">
+
+                                    <input type="number"
+                                           step="any"
+                                           name="temperature_c"
+                                           value="0"
+                                           placeholder="Example: 28">
+
+                                    <span>
+                                        °C
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- HUMIDITY -->
+
+                            <div class="field">
+
+                                <label>
+                                    Humidity
+                                </label>
+
+                                <div class="input-unit">
+
+                                    <input type="number"
+                                           step="any"
+                                           min="0"
+                                           max="100"
+                                           name="humidity_percent"
+                                           value="0"
+                                           placeholder="Example: 70">
+
+                                    <span>
+                                        %
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- SOIL MOISTURE -->
+
+                            <div class="field">
+
+                                <label>
+                                    Soil Moisture
+                                </label>
+
+                                <div class="input-unit">
+
+                                    <input type="number"
+                                           step="any"
+                                           min="0"
+                                           max="100"
+                                           name="soil_moisture_percent"
+                                           value="0"
+                                           placeholder="Example: 55">
+
+                                    <span>
+                                        %
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- SOIL PH -->
+
+                            <div class="field">
+
+                                <label>
+                                    Soil pH
+                                </label>
+
+                                <input type="number"
+                                       step="any"
+                                       min="0"
+                                       max="14"
+                                       name="soil_ph"
+                                       value="0"
+                                       placeholder="Example: 6.5">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- FORM FOOTER -->
+
+                    <div class="form-footer">
+
+                        <div class="prediction-note">
+
+                            <span>
+                                🤖
+                            </span>
+
+                            <p>
+                                Our machine learning model will
+                                analyze your inputs and estimate
+                                the expected crop yield.
+                            </p>
+
+                        </div>
+
+
+                        <button type="submit"
+                                class="submit-button normal-submit">
+
+                            <span>
+                                🌾
+                            </span>
+
+                            Predict Crop Yield
+
+                            <span>
+                                →
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             AI PREDICTION FORM
+        ================================================== -->
+
+        <section id="aiSection"
+                 class="prediction-form-section hidden">
+
+
+            <button type="button"
+                    onclick="backToModes()"
+                    class="back-button">
+
+                ← Back to Prediction Methods
+
+            </button>
+
+
+
+            <div class="form-card ai-form-card">
+
+
+                <!-- FORM HEADER -->
+
+                <div class="form-header">
+
+                    <div class="form-icon ai-icon">
+                        🤖
+                    </div>
+
+                    <div>
+
+                        <span class="form-label ai-label">
+                            ARTIFICIAL INTELLIGENCE
+                        </span>
+
+                        <h2>
+                            AI Crop Yield Prediction
+                        </h2>
+
+                        <p>
+                            Enter only Location, Crop and Area.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <form method="POST"
+                      action="{{ url_for('ai_predict') }}"
+                      id="aiForm">
+
+
+                    <!-- LOCATION -->
+
+                    <div class="form-block">
+
+                        <div class="block-title">
+
+                            <span>
+                                📍
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Farm Location
+                                </h3>
+
+                                <p>
+                                    Enter your farming location
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Location
+                                <span>*</span>
+                            </label>
+
+                            <input type="text"
+                                   id="aiLocation"
+                                   name="location"
+                                   placeholder="Example: Vellore, Tamil Nadu"
+                                   required>
+
+                            <small>
+                                AI will automatically find
+                                environmental information.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- CROP -->
+
+                    <div class="form-block">
+
+                        <div class="block-title">
+
+                            <span>
+                                🌱
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Crop Information
+                                </h3>
+
+                                <p>
+                                    Select your crop and
+                                    cultivation area
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="grid">
+
+
+                            <!-- CROP -->
+
+                            <div class="field">
+
+                                <label>
+                                    Crop
+                                    <span>*</span>
+                                </label>
+
+                                <select name="crop"
+                                        required>
+
+                                    <option value="">
+                                        Select Crop
+                                    </option>
+
+                                    {% for crop in crops %}
+
+                                    <option value="{{ crop }}">
+                                        {{ crop }}
+                                    </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- AREA -->
+
+                            <div class="field">
+
+                                <label>
+                                    Area
+                                    <span>*</span>
+                                </label>
+
+                                <div class="input-unit">
+
+                                    <input type="number"
+                                           step="any"
+                                           min="0.01"
+                                           name="area"
+                                           placeholder="Example: 10"
+                                           required>
+
+                                    <span>
+                                        ha
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- AI INFORMATION -->
+
+                    <div class="ai-info">
+
+                        <strong>
+                            🤖 AI automatically handles
+                        </strong>
+
+                        <ul>
+
+                            <li>
+                                🌡️ Current temperature
+                            </li>
+
+                            <li>
+                                💧 Current humidity
+                            </li>
+
+                            <li>
+                                🌧️ Current precipitation
+                            </li>
+
+                            <li>
+                                🌱 Soil moisture
+                            </li>
+
+                            <li>
+                                📅 Year and month
+                            </li>
+
+                            <li>
+                                🌾 Season
+                            </li>
+
+                            <li>
+                                📍 Location coordinates
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+
+                    <!-- FORM FOOTER -->
+
+                    <div class="form-footer">
+
+                        <div class="prediction-note ai-note">
+
+                            <span>
+                                ✨
+                            </span>
+
+                            <p>
+                                AI analyzes your location and
+                                environmental conditions before
+                                generating the prediction.
+                            </p>
+
+                        </div>
+
+
+                        <button type="submit"
+                                class="submit-button ai-submit"
+                                id="aiButton">
+
+                            <span>
+                                🤖
+                            </span>
+
+                            Run AI Prediction
+
+                            <span>
+                                →
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
+
+    <section id="about"
+             class="info-section about-section">
+
+        <div class="about-content">
+
+
+            <div class="about-text">
+
+                <span class="section-label">
+                    ABOUT US
+                </span>
+
+                <h2>
+                    Building a Smarter Future
+                    for Agriculture
+                </h2>
+
+                <p>
+                    Crop Yield AI is a smart agriculture
+                    prediction platform designed to combine
+                    machine learning, artificial intelligence
+                    and agricultural data.
+                </p>
+
+                <p>
+                    Our goal is to make agricultural prediction
+                    technology easier to understand and use.
+                </p>
+
+            </div>
+
+
+
+            <div class="about-visual">
+
+                <div class="about-circle">
+                    🌾
+                </div>
+
+                <div class="about-mini-card">
+
+                    <strong>
+                        AI + Agriculture
+                    </strong>
+
+                    <span>
+                        Smarter Decisions
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+
+        <div class="footer-brand">
+
+            <div class="logo-icon">
+                🌾
+            </div>
+
+            <div>
+
+                <strong>
+                    Crop Yield AI
+                </strong>
+
+                <p>
+                    Smart Agriculture Prediction System
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="footer-links">
+
+            <a href="{{ url_for('solutions') }}">
+                Solutions
+            </a>
+
+            <a href="{{ url_for('for_whom') }}">
+                For Whom
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="{{ url_for('careers') }}">
+                Careers
+            </a>
+
+            <a href="{{ url_for('history') }}">
+                History
+            </a>
+
+            <a href="{{ url_for('analytics') }}">
+                Analytics
+            </a>
+
+        </div>
+
+
+
+        <p class="copyright">
+
+            © 2026 Crop Yield AI.
+            Smart Agriculture Technology.
+
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="{{ url_for('static', filename='js/farmer.js') }}">
+</script>
+
+
+</body>
+
+</html>

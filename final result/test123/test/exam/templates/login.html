@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crop Yield AI - Login</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: #151816;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* MAIN */
+
+        .page {
+            width: 100%;
+            max-width: 1100px;
+            min-height: 650px;
+
+            display: grid;
+            grid-template-columns: 42% 58%;
+
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.35);
+        }
+
+
+        /* =================================================
+           LEFT IMAGE SECTION
+        ================================================= */
+
+        .left-panel {
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    rgba(10, 35, 17, 0.45),
+                    rgba(10, 35, 17, 0.75)
+                ),
+                url("https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1000&q=90");
+
+            background-size: cover;
+            background-position: center;
+
+            min-height: 650px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            padding: 42px;
+        }
+
+
+        .logo {
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+
+            width: 43px;
+            height: 43px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: rgba(255,255,255,0.18);
+
+            backdrop-filter: blur(8px);
+
+            font-size: 24px;
+        }
+
+
+        .hero-text {
+
+            color: white;
+            max-width: 350px;
+        }
+
+        .hero-text h1 {
+
+            font-size: 46px;
+            line-height: 1.12;
+
+            font-weight: 700;
+
+            margin-bottom: 18px;
+
+            letter-spacing: -1px;
+        }
+
+        .hero-text p {
+
+            color: rgba(255,255,255,0.82);
+
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+
+        .left-bottom {
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: white;
+        }
+
+        .status {
+
+            width: 10px;
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: #7ee787;
+        }
+
+        .status-text {
+
+            font-size: 12px;
+        }
+
+
+        /* =================================================
+           RIGHT SECTION
+        ================================================= */
+
+        .right-panel {
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 50px;
+        }
+
+
+        .login-container {
+
+            width: 100%;
+            max-width: 390px;
+        }
+
+
+        /* HEADER */
+
+        .login-header {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+        .login-header .small-icon {
+
+            width: 55px;
+            height: 55px;
+
+            margin: 0 auto 17px;
+
+            border-radius: 17px;
+
+            background: #e5f2e5;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 28px;
+        }
+
+        .login-header h2 {
+
+            color: #246b2b;
+
+            font-size: 31px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
+        }
+
+        .login-header p {
+
+            color: #9a9a9a;
+
+            font-size: 12px;
+        }
+
+
+        /* =================================================
+           FLASH MESSAGE
+        ================================================= */
+
+        .message {
+
+            padding: 12px 15px;
+
+            margin-bottom: 18px;
+
+            border-radius: 10px;
+
+            background: #fff0ef;
+
+            border: 1px solid #ffd5d2;
+
+            color: #c62828;
+
+            font-size: 12px;
+
+            text-align: center;
+        }
+
+
+        /* =================================================
+           FORM
+        ================================================= */
+
+        .form-group {
+
+            margin-bottom: 17px;
+        }
+
+
+        .input-box {
+
+            position: relative;
+        }
+
+
+        .input-box input {
+
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            outline: none;
+
+            border-radius: 11px;
+
+            background: #d9ead8;
+
+            color: #245b29;
+
+            padding: 0 45px 0 43px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 12px;
+
+            transition: 0.25s;
+        }
+
+
+        .input-box input::placeholder {
+
+            color: #4b754e;
+        }
+
+
+        .input-box input:focus {
+
+            background: #cfe5ce;
+
+            box-shadow:
+                0 0 0 3px rgba(47,125,50,0.12);
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 15px;
+
+            color: #287330;
+
+            pointer-events: none;
+        }
+
+
+        .show-password {
+
+            position: absolute;
+
+            right: 14px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            color: #287330;
+        }
+
+
+        /* =================================================
+           OPTIONS
+        ================================================= */
+
+        .options {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin: 5px 3px 25px;
+
+            font-size: 9px;
+
+            color: #777;
+        }
+
+
+        .remember {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+        }
+
+
+        .remember input {
+
+            accent-color: #26732e;
+        }
+
+
+        .forgot {
+
+            color: #26732e;
+
+            text-decoration: none;
+
+            font-weight: 600;
+        }
+
+
+        /* =================================================
+           LOGIN BUTTON
+        ================================================= */
+
+        .login-button {
+
+            width: 100%;
+
+            height: 51px;
+
+            border: none;
+
+            border-radius: 30px;
+
+            background: #24752c;
+
+            color: white;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: all 0.25s;
+
+            box-shadow:
+                0 8px 20px rgba(36,117,44,0.20);
+        }
+
+
+        .login-button:hover {
+
+            background: #195e21;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px rgba(36,117,44,0.28);
+        }
+
+
+        .login-button:active {
+
+            transform: translateY(0);
+        }
+
+
+        /* =================================================
+           REGISTER
+        ================================================= */
+
+        .register {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #999;
+
+            font-size: 11px;
+        }
+
+
+        .register a {
+
+            color: #24752c;
+
+            font-weight: 600;
+
+            text-decoration: none;
+        }
+
+
+        .register a:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* =================================================
+           SECURITY
+        ================================================= */
+
+        .security {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 6px;
+
+            margin-top: 30px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #eeeeee;
+
+            color: #aaa;
+
+            font-size: 9px;
+        }
+
+
+        /* =================================================
+           RESPONSIVE
+        ================================================= */
+
+        @media (max-width: 800px) {
+
+            .page {
+
+                grid-template-columns: 1fr;
+
+                max-width: 480px;
+            }
+
+            .left-panel {
+
+                display: none;
+            }
+
+            .right-panel {
+
+                min-height: 650px;
+
+                padding: 35px 25px;
+            }
+        }
+
+
+        @media (max-width: 450px) {
+
+            body {
+
+                padding: 0;
+
+            }
+
+            .page {
+
+                min-height: 100vh;
+
+                border-radius: 0;
+            }
+
+            .right-panel {
+
+                padding: 30px 22px;
+            }
+
+            .login-header h2 {
+
+                font-size: 27px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- =================================================
+         LEFT SIDE
+    ================================================= -->
+
+    <div class="left-panel">
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🌾
+            </div>
+
+            <span>
+                Crop Yield AI
+            </span>
+
+        </div>
+
+
+        <div class="hero-text">
+
+            <h1>
+                The smarter<br>
+                way to grow<br>
+                your crops.
+            </h1>
+
+            <p>
+                AI-powered crop yield prediction,
+                agricultural analytics and intelligent
+                farming insights in one platform.
+            </p>
+
+        </div>
+
+
+        <div class="left-bottom">
+
+            <span class="status"></span>
+
+            <span class="status-text">
+                AI Agriculture Platform
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         RIGHT LOGIN
+    ================================================= -->
+
+    <div class="right-panel">
+
+
+        <div class="login-container">
+
+
+            <!-- HEADER -->
+
+            <div class="login-header">
+
+                <div class="small-icon">
+                    🌱
+                </div>
+
+                <h2>
+                    Welcome Back
+                </h2>
+
+                <p>
+                    Login to your Crop Yield AI account
+                </p>
+
+            </div>
+
+
+            <!-- FLASH MESSAGE -->
+
+            {% with messages = get_flashed_messages() %}
+
+                {% if messages %}
+
+                    {% for message in messages %}
+
+                        <div class="message">
+                            ⚠️ {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            {% endwith %}
+
+
+            <!-- FORM -->
+
+            <form
+                method="POST"
+                action="{{ url_for('login') }}"
+            >
+
+
+                <!-- USERNAME -->
+
+                <div class="form-group">
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+                            👤
+                        </span>
+
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="User ID"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
+
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            onclick="togglePassword()"
+                            id="eyeButton"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OPTIONS -->
+
+                <div class="options">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            name="remember"
+                        >
+
+                        Remember Me
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        class="forgot"
+                        onclick="return false;"
+                    >
+                        Forgot password?
+                    </a>
+
+                </div>
+
+
+                <!-- LOGIN -->
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    Login
+                </button>
+
+
+            </form>
+
+
+            <!-- REGISTER -->
+
+            <div class="register">
+
+                Don't have an account?
+
+                <a href="{{ url_for('register') }}">
+                    Sign Up
+                </a>
+
+            </div>
+
+
+            <!-- SECURITY -->
+
+            <div class="security">
+
+                <span>🔐</span>
+
+                <span>
+                    Secure AI Agriculture Platform
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function togglePassword() {
+
+    const password =
+        document.getElementById("password");
+
+    const eye =
+        document.getElementById("eyeButton");
+
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+        eye.textContent = "🙈";
+
+    } else {
+
+        password.type = "password";
+
+        eye.textContent = "👁";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+</html>

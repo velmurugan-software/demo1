@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction History - Crop Yield AI</title>
+
+
+    <!-- =====================================================
+         HISTORY CSS
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/history.css') }}">
+
+
+    <!-- =====================================================
+         PDF LIBRARIES
+    ====================================================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+    </script>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+
+    <div class="logo">
+
+        🌾 Crop Yield AI
+
+    </div>
+
+
+    <nav>
+
+
+        <a href="{{ url_for('farmer_dashboard') }}">
+
+            Dashboard
+
+        </a>
+
+
+        <a href="{{ url_for('history') }}"
+           class="active">
+
+            History
+
+        </a>
+
+
+        <a href="{{ url_for('ai_prediction') }}">
+
+            AI Prediction
+
+        </a>
+
+
+        <a href="{{ url_for('logout') }}"
+           class="logout">
+
+            Logout
+
+        </a>
+
+
+    </nav>
+
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container"
+      id="historyContent">
+
+
+    <!-- =================================================
+         PAGE HEADER
+    ================================================== -->
+
+    <div class="page-header">
+
+
+        <div>
+
+
+            <h1>
+
+                Prediction History
+
+            </h1>
+
+
+            <p>
+
+                Welcome, {{ username }}
+
+            </p>
+
+
+        </div>
+
+
+        <div class="header-actions">
+
+
+            <a href="{{ url_for('farmer_dashboard') }}"
+               class="back-button">
+
+                ← Back to Dashboard
+
+            </a>
+
+
+            <!-- PDF BUTTON -->
+
+            <button type="button"
+                    class="download-button"
+                    id="downloadPdfButton"
+                    onclick="downloadHistoryPDF()">
+
+                📥 Download PDF
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         NO HISTORY
+    ================================================== -->
+
+    {% if not history %}
+
+
+        <div class="empty-card">
+
+
+            <div class="empty-icon">
+
+                📊
+
+            </div>
+
+
+            <h2>
+
+                No Prediction History
+
+            </h2>
+
+
+            <p>
+
+                You have not made any crop yield predictions yet.
+
+            </p>
+
+
+            <a href="{{ url_for('farmer_dashboard') }}"
+               class="primary-button">
+
+                Make Your First Prediction
+
+            </a>
+
+
+        </div>
+
+
+
+    {% else %}
+
+
+
+    <!-- =================================================
+         SUMMARY
+    ================================================== -->
+
+    <div class="summary-card">
+
+
+        <div class="summary-item">
+
+
+            <span class="summary-number">
+
+                {{ history|length }}
+
+            </span>
+
+
+            <span class="summary-label">
+
+                Total Predictions
+
+            </span>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         HISTORY CARDS
+    ================================================== -->
+
+    <div class="history-list">
+
+
+        {% for item in history %}
+
+
+        <div class="history-card">
+
+
+            <!-- =========================================
+                 CARD HEADER
+            ========================================== -->
+
+            <div class="card-header">
+
+
+                <div>
+
+
+                    <h2>
+
+                        🌾 {{ item.crop }}
+
+                    </h2>
+
+
+                    <p class="location">
+
+                        📍 {{ item.location }}
+
+                    </p>
+
+
+                </div>
+
+
+
+                <div class="prediction-type
+                    {% if item.type == 'AI' %}
+                        ai-type
+                    {% else %}
+                        normal-type
+                    {% endif %}">
+
+
+                    {% if item.type == 'AI' %}
+
+                        🤖 AI Prediction
+
+                    {% else %}
+
+                        📊 Normal Prediction
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 BASIC INFORMATION
+            ========================================== -->
+
+            <div class="details-grid">
+
+
+                <div class="detail">
+
+
+                    <span class="label">
+
+                        Area
+
+                    </span>
+
+
+                    <span class="value">
+
+                        {{ item.area or 0 }}
+
+                    </span>
+
+
+                    <span class="unit">
+
+                        hectares
+
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="detail">
+
+
+                    <span class="label">
+
+                        Predicted Yield
+
+                    </span>
+
+
+                    <span class="value highlight">
+
+                        {{ "%.4f"|format(item.prediction or 0) }}
+
+                    </span>
+
+
+                    <span class="unit">
+
+                        ton/ha
+
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="detail">
+
+
+                    <span class="label">
+
+                        Estimated Production
+
+                    </span>
+
+
+                    <span class="value">
+
+                        {{ "%.4f"|format(item.estimated_production or 0) }}
+
+                    </span>
+
+
+                    <span class="unit">
+
+                        tons
+
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="detail">
+
+
+                    <span class="label">
+
+                        Season
+
+                    </span>
+
+
+                    <span class="value">
+
+                        {{ item.season or "N/A" }}
+
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="detail">
+
+
+                    <span class="label">
+
+                        Year
+
+                    </span>
+
+
+                    <span class="value">
+
+                        {{ item.year or "N/A" }}
+
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="detail">
+
+
+                    <span class="label">
+
+                        Month
+
+                    </span>
+
+
+                    <span class="value">
+
+                        {{ item.month or "N/A" }}
+
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 ENVIRONMENTAL INFORMATION
+            ========================================== -->
+
+            <div class="environment-section">
+
+
+                <h3>
+
+                    Environmental Conditions
+
+                </h3>
+
+
+
+                <div class="environment-grid">
+
+
+                    <div class="environment-item">
+
+
+                        <span>
+
+                            🌧️ Rainfall
+
+                        </span>
+
+
+                        <strong>
+
+                            {{ "%.2f"|format(item.rainfall or 0) }}
+
+                            mm
+
+                        </strong>
+
+
+                    </div>
+
+
+
+                    <div class="environment-item">
+
+
+                        <span>
+
+                            🌡️ Temperature
+
+                        </span>
+
+
+                        <strong>
+
+                            {{ "%.2f"|format(item.temperature or 0) }}
+
+                            °C
+
+                        </strong>
+
+
+                    </div>
+
+
+
+                    <div class="environment-item">
+
+
+                        <span>
+
+                            💧 Humidity
+
+                        </span>
+
+
+                        <strong>
+
+                            {{ "%.2f"|format(item.humidity or 0) }}
+
+                            %
+
+                        </strong>
+
+
+                    </div>
+
+
+
+                    <div class="environment-item">
+
+
+                        <span>
+
+                            🌱 Soil Moisture
+
+                        </span>
+
+
+                        <strong>
+
+                            {{ "%.2f"|format(item.soil_moisture or 0) }}
+
+                            %
+
+                        </strong>
+
+
+                    </div>
+
+
+
+                    <div class="environment-item">
+
+
+                        <span>
+
+                            🧪 Soil pH
+
+                        </span>
+
+
+                        <strong>
+
+                            {{ "%.2f"|format(item.soil_ph or 0) }}
+
+                        </strong>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 DATE
+            ========================================== -->
+
+            <div class="card-footer">
+
+
+                <span>
+
+                    🕒 Prediction ID:
+
+                    {{ item.id }}
+
+                </span>
+
+
+                <span>
+
+                    📅 {{ item.date }}
+
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+    {% endif %}
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+    <p>
+
+        © 2026 Crop Yield AI
+
+    </p>
+
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   DOWNLOAD HISTORY PDF
+===================================================== */
+
+async function downloadHistoryPDF() {
+
+
+    const button =
+        document.getElementById(
+            "downloadPdfButton"
+        );
+
+
+    const originalText =
+        button.innerHTML;
+
+
+    button.innerHTML =
+        "⏳ Creating PDF...";
+
+
+    button.disabled = true;
+
+
+    try {
+
+
+        /* =============================================
+           CHECK LIBRARIES
+        ============================================== */
+
+        if (
+            typeof html2canvas === "undefined"
+        ) {
+
+            throw new Error(
+                "html2canvas library not loaded."
+            );
+
+        }
+
+
+        if (
+            typeof window.jspdf === "undefined"
+        ) {
+
+            throw new Error(
+                "jsPDF library not loaded."
+            );
+
+        }
+
+
+
+        /* =============================================
+           GET HISTORY CONTENT
+        ============================================== */
+
+        const content =
+            document.getElementById(
+                "historyContent"
+            );
+
+
+        if (!content) {
+
+            throw new Error(
+                "History content not found."
+            );
+
+        }
+
+
+
+        /* =============================================
+           HIDE DOWNLOAD / BACK BUTTONS
+        ============================================== */
+
+        const headerActions =
+            document.querySelector(
+                ".header-actions"
+            );
+
+
+        if (headerActions) {
+
+            headerActions.style.display =
+                "none";
+
+        }
+
+
+
+        /* =============================================
+           CAPTURE CONTENT
+        ============================================== */
+
+        const canvas =
+            await html2canvas(
+
+                content,
+
+                {
+
+                    scale: 2,
+
+                    useCORS: true,
+
+                    allowTaint: true,
+
+                    backgroundColor:
+                        "#ffffff",
+
+                    logging: false
+
+                }
+
+            );
+
+
+
+        /* =============================================
+           SHOW BUTTONS AGAIN
+        ============================================== */
+
+        if (headerActions) {
+
+            headerActions.style.display =
+                "";
+
+        }
+
+
+
+        /* =============================================
+           CONVERT TO IMAGE
+        ============================================== */
+
+        const imageData =
+            canvas.toDataURL(
+                "image/png",
+                1.0
+            );
+
+
+
+        /* =============================================
+           CREATE PDF
+        ============================================== */
+
+        const {
+            jsPDF
+        } = window.jspdf;
+
+
+        const pdf =
+            new jsPDF(
+
+                "p",
+
+                "mm",
+
+                "a4"
+
+            );
+
+
+        const pageWidth =
+            pdf.internal.pageSize
+                .getWidth();
+
+
+        const pageHeight =
+            pdf.internal.pageSize
+                .getHeight();
+
+
+        const margin = 8;
+
+
+        const pdfWidth =
+            pageWidth -
+            (margin * 2);
+
+
+        const pdfHeight =
+            (
+                canvas.height *
+                pdfWidth
+            ) /
+            canvas.width;
+
+
+        let heightLeft =
+            pdfHeight;
+
+
+        let position =
+            margin;
+
+
+
+        /* =============================================
+           FIRST PAGE
+        ============================================== */
+
+        pdf.addImage(
+
+            imageData,
+
+            "PNG",
+
+            margin,
+
+            position,
+
+            pdfWidth,
+
+            pdfHeight,
+
+            undefined,
+
+            "FAST"
+
+        );
+
+
+        heightLeft -=
+            pageHeight -
+            (margin * 2);
+
+
+
+        /* =============================================
+           ADD MORE PAGES
+        ============================================== */
+
+        while (heightLeft > 0) {
+
+
+            position =
+                heightLeft -
+                pdfHeight +
+                margin;
+
+
+            pdf.addPage();
+
+
+            pdf.addImage(
+
+                imageData,
+
+                "PNG",
+
+                margin,
+
+                position,
+
+                pdfWidth,
+
+                pdfHeight,
+
+                undefined,
+
+                "FAST"
+
+            );
+
+
+            heightLeft -=
+                pageHeight -
+                (margin * 2);
+
+        }
+
+
+
+        /* =============================================
+           SAVE PDF
+        ============================================== */
+
+        pdf.save(
+            "Crop_Yield_AI_Prediction_History.pdf"
+        );
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "PDF Error:",
+            error
+        );
+
+
+        alert(
+            "Unable to create PDF. " +
+            "Please check your internet connection " +
+            "and try again."
+        );
+
+
+    }
+
+
+    finally {
+
+
+        /* =============================================
+           RESTORE HEADER
+        ============================================== */
+
+        const headerActions =
+            document.querySelector(
+                ".header-actions"
+            );
+
+
+        if (headerActions) {
+
+            headerActions.style.display =
+                "";
+
+        }
+
+
+        /* =============================================
+           RESTORE BUTTON
+        ============================================== */
+
+        button.innerHTML =
+            originalText;
+
+
+        button.disabled =
+            false;
+
+
+    }
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

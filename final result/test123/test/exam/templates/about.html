@@ -1,0 +1,1158 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="About Crop Yield AI - Smart Agriculture using Artificial Intelligence, Machine Learning and Data Analytics">
+
+    <title>About Us - Crop Yield AI</title>
+
+    <!-- About Page CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/about.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+     ========================================================= -->
+
+<nav class="navbar">
+
+    <a href="{{ url_for('farmer_dashboard') }}"
+       class="logo">
+
+        <span class="logo-icon">
+            🌱
+        </span>
+
+        <span>
+            Crop Yield AI
+        </span>
+
+    </a>
+
+
+    <button class="menu-btn"
+            type="button"
+            aria-label="Open Menu">
+
+        ☰
+
+    </button>
+
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="{{ url_for('farmer_dashboard') }}">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('solutions') }}">
+                Solutions
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('for_whom') }}">
+                For Whom
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('history') }}">
+                History
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('analytics') }}">
+                Analytics
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('about') }}"
+               class="active">
+                About Us
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('careers') }}">
+                Careers
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('logout') }}"
+               class="logout-btn">
+                Logout
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+
+<!-- =========================================================
+     HERO SECTION
+     ========================================================= -->
+
+<section class="about-hero">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            ABOUT CROP YIELD AI
+        </div>
+
+
+        <h1 class="hero-title">
+            Building a Smarter Future for Agriculture
+        </h1>
+
+
+        <p class="hero-description">
+
+            Crop Yield AI is a smart agriculture platform that combines
+            Artificial Intelligence, Machine Learning, environmental data,
+            soil information and crop health analysis to support
+            data-driven agricultural decisions.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     OVERVIEW
+     ========================================================= -->
+
+<section class="section overview reveal">
+
+    <div class="section-header">
+
+        <div class="section-label">
+            Our Platform
+        </div>
+
+        <h2 class="section-title">
+            What is Crop Yield AI?
+        </h2>
+
+        <p class="section-description">
+
+            A technology-driven approach to understanding crops,
+            agricultural conditions and farm data.
+
+        </p>
+
+    </div>
+
+
+    <div class="overview-grid">
+
+
+        <div class="overview-text">
+
+            <h3>
+                Intelligent Agriculture Through Data
+            </h3>
+
+
+            <p>
+
+                Crop Yield AI is designed to bring modern Artificial
+                Intelligence and Machine Learning technologies into
+                agriculture. The platform helps transform agricultural
+                data into meaningful insights that can support better
+                planning and decision-making.
+
+            </p>
+
+
+            <p>
+
+                The system focuses on crop yield prediction and crop
+                disease detection while considering important factors
+                such as crop information, location, environmental
+                conditions and soil-related parameters.
+
+            </p>
+
+
+            <p>
+
+                Our goal is to make agricultural technology easier to
+                understand and more accessible for farmers, students,
+                researchers and agricultural organizations.
+
+            </p>
+
+
+            <div class="about-points">
+
+
+                <div class="about-point">
+
+                    <div class="about-point-icon">
+                        ✓
+                    </div>
+
+                    <span>
+                        Data-driven crop yield prediction
+                    </span>
+
+                </div>
+
+
+                <div class="about-point">
+
+                    <div class="about-point-icon">
+                        ✓
+                    </div>
+
+                    <span>
+                        AI-powered crop disease detection
+                    </span>
+
+                </div>
+
+
+                <div class="about-point">
+
+                    <div class="about-point-icon">
+                        ✓
+                    </div>
+
+                    <span>
+                        Agricultural data analysis and insights
+                    </span>
+
+                </div>
+
+
+                <div class="about-point">
+
+                    <div class="about-point-icon">
+                        ✓
+                    </div>
+
+                    <span>
+                        Smart decision-support approach
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="about-visual">
+
+            <svg width="260"
+                 height="250"
+                 viewBox="0 0 260 250"
+                 fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+
+                <!-- Sun -->
+
+                <circle cx="205"
+                        cy="55"
+                        r="28"
+                        fill="#F7C948"/>
+
+
+                <!-- Ground -->
+
+                <path d="M20 200
+                         C70 175 110 190 145 178
+                         C180 166 210 180 240 170
+                         L240 225
+                         L20 225 Z"
+                      fill="#B7DDB8"/>
+
+
+                <!-- Plant stem -->
+
+                <path d="M130 205
+                         C130 170 130 135 130 105"
+                      stroke="#238B45"
+                      stroke-width="8"
+                      stroke-linecap="round"/>
+
+
+                <!-- Left leaf -->
+
+                <path d="M130 145
+                         C105 110 70 115 58 137
+                         C84 155 108 157 130 145Z"
+                      fill="#55B95C"/>
+
+
+                <!-- Right leaf -->
+
+                <path d="M130 128
+                         C150 92 188 91 205 112
+                         C184 132 158 139 130 128Z"
+                      fill="#3E9F4A"/>
+
+
+                <!-- Top leaf -->
+
+                <path d="M130 108
+                         C110 80 116 57 130 40
+                         C147 60 150 84 130 108Z"
+                      fill="#6BCB63"/>
+
+
+                <!-- Soil -->
+
+                <ellipse cx="130"
+                         cy="211"
+                         rx="95"
+                         ry="14"
+                         fill="#8BBF8D"/>
+
+
+                <!-- Data circles -->
+
+                <circle cx="45"
+                        cy="60"
+                        r="8"
+                        fill="#54A95C"/>
+
+                <circle cx="65"
+                        cy="40"
+                        r="5"
+                        fill="#7BCF79"/>
+
+                <circle cx="225"
+                        cy="145"
+                        r="7"
+                        fill="#54A95C"/>
+
+            </svg>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MISSION & VISION
+     ========================================================= -->
+
+<section class="section mission-section">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            Purpose
+        </div>
+
+        <h2 class="section-title">
+            Our Mission & Vision
+        </h2>
+
+        <p class="section-description">
+
+            Using technology to support a more informed,
+            connected and intelligent agricultural ecosystem.
+
+        </p>
+
+    </div>
+
+
+    <div class="mission-grid">
+
+
+        <!-- Mission -->
+
+        <div class="info-card reveal">
+
+            <div class="svg-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <path d="M12 21
+                             C12 21 4 16
+                             4 9
+                             C4 5.5 7 3 10 4.5
+                             C11 5 12 6.5 12 6.5
+                             C12 6.5 13 5 14 4.5
+                             C17 3 20 5.5 20 9
+                             C20 16 12 21 12 21Z"/>
+
+                    <path d="M8 12
+                             C9.5 10.5 11 10.5 12 12
+                             C13 10.5 14.5 10.5 16 12"/>
+
+                </svg>
+
+            </div>
+
+
+            <h3>
+                Our Mission
+            </h3>
+
+
+            <p>
+
+                Our mission is to make agricultural data and AI
+                technologies easier to use. Crop Yield AI aims to
+                support farmers and agricultural users by providing
+                meaningful insights from crop, soil, environmental
+                and plant-health information.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- Vision -->
+
+        <div class="info-card reveal">
+
+            <div class="svg-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <path d="M2 12
+                             C5 7
+                             8 5
+                             12 5
+                             C16 5
+                             19 7
+                             22 12
+                             C19 17
+                             16 19
+                             12 19
+                             C8 19
+                             5 17
+                             2 12Z"/>
+
+                    <circle cx="12"
+                            cy="12"
+                            r="3"/>
+
+                </svg>
+
+            </div>
+
+
+            <h3>
+                Our Vision
+            </h3>
+
+
+            <p>
+
+                Our vision is to contribute toward a smarter and more
+                sustainable agricultural future where Artificial
+                Intelligence, Machine Learning, environmental data
+                and digital technologies can support better farming
+                decisions.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     KEY FEATURES
+     ========================================================= -->
+
+<section class="section features">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            What We Offer
+        </div>
+
+        <h2 class="section-title">
+            Key Features
+        </h2>
+
+        <p class="section-description">
+
+            Core capabilities designed around agricultural
+            prediction, analysis and decision support.
+
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+
+        <div class="feature-card reveal">
+
+            <div class="feature-number">
+                FEATURE 01
+            </div>
+
+            <h3>
+                Crop Yield Prediction
+            </h3>
+
+            <p>
+
+                Analyze crop and environmental parameters using
+                machine learning to estimate agricultural yield.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card reveal">
+
+            <div class="feature-number">
+                FEATURE 02
+            </div>
+
+            <h3>
+                Crop Disease Detection
+            </h3>
+
+            <p>
+
+                Analyze uploaded crop images using an AI-based
+                disease detection model to identify possible
+                plant health conditions.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card reveal">
+
+            <div class="feature-number">
+                FEATURE 03
+            </div>
+
+            <h3>
+                Weather & Environmental Insights
+            </h3>
+
+            <p>
+
+                Consider environmental parameters such as rainfall,
+                temperature and humidity when analyzing agricultural
+                conditions.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card reveal">
+
+            <div class="feature-number">
+                FEATURE 04
+            </div>
+
+            <h3>
+                Soil Data Analysis
+            </h3>
+
+            <p>
+
+                Use soil-related information such as soil moisture
+                and soil pH as part of agricultural analysis.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card reveal">
+
+            <div class="feature-number">
+                FEATURE 05
+            </div>
+
+            <h3>
+                Prediction History
+            </h3>
+
+            <p>
+
+                Maintain prediction information so users can review
+                previous results and understand historical trends.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="feature-card reveal">
+
+            <div class="feature-number">
+                FEATURE 06
+            </div>
+
+            <h3>
+                AI-Assisted Decision Support
+            </h3>
+
+            <p>
+
+                Combine agricultural data and AI techniques to
+                provide a foundation for smarter farming decisions.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     HOW IT WORKS
+     ========================================================= -->
+
+<section class="section workflow">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            Simple Process
+        </div>
+
+        <h2 class="section-title">
+            How Crop Yield AI Works
+        </h2>
+
+        <p class="section-description">
+
+            A simple workflow for turning agricultural information
+            into useful AI-based insights.
+
+        </p>
+
+    </div>
+
+
+    <div class="workflow-grid">
+
+
+        <div class="workflow-step reveal">
+
+            <div class="step-circle">
+                01
+            </div>
+
+            <h3>
+                Enter Data
+            </h3>
+
+            <p>
+
+                Provide crop, location, area, soil and environmental
+                information.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="workflow-step reveal">
+
+            <div class="step-circle">
+                02
+            </div>
+
+            <h3>
+                AI Analysis
+            </h3>
+
+            <p>
+
+                The selected machine learning or AI model processes
+                the available information.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="workflow-step reveal">
+
+            <div class="step-circle">
+                03
+            </div>
+
+            <h3>
+                Generate Result
+            </h3>
+
+            <p>
+
+                The system generates a prediction or crop disease
+                detection result.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="workflow-step reveal">
+
+            <div class="step-circle">
+                04
+            </div>
+
+            <h3>
+                Make Decisions
+            </h3>
+
+            <p>
+
+                Use the generated information as a decision-support
+                input for agricultural planning.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TECHNOLOGY
+     ========================================================= -->
+
+<section class="section technology">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            Technology Stack
+        </div>
+
+        <h2 class="section-title">
+            Technology Used
+        </h2>
+
+        <p class="section-description">
+
+            Crop Yield AI is built using modern programming,
+            machine learning and web technologies.
+
+        </p>
+
+    </div>
+
+
+    <div class="tech-grid">
+
+
+        <div class="tech-card reveal">
+
+            <h3>
+                Python
+            </h3>
+
+            <p>
+                Core programming language
+            </p>
+
+        </div>
+
+
+
+        <div class="tech-card reveal">
+
+            <h3>
+                Flask
+            </h3>
+
+            <p>
+                Web application framework
+            </p>
+
+        </div>
+
+
+
+        <div class="tech-card reveal">
+
+            <h3>
+                Scikit-learn
+            </h3>
+
+            <p>
+                Machine learning
+            </p>
+
+        </div>
+
+
+
+        <div class="tech-card reveal">
+
+            <h3>
+                TensorFlow / Keras
+            </h3>
+
+            <p>
+                Deep learning and image analysis
+            </p>
+
+        </div>
+
+
+
+        <div class="tech-card reveal">
+
+            <h3>
+                Pandas
+            </h3>
+
+            <p>
+                Data processing
+            </p>
+
+        </div>
+
+
+
+        <div class="tech-card reveal">
+
+            <h3>
+                NumPy
+            </h3>
+
+            <p>
+                Numerical computing
+            </p>
+
+        </div>
+
+
+
+        <div class="tech-card reveal">
+
+            <h3>
+                SQLite
+            </h3>
+
+            <p>
+                Application database
+            </p>
+
+        </div>
+
+
+
+        <div class="tech-card reveal">
+
+            <h3>
+                HTML / CSS / JS
+            </h3>
+
+            <p>
+                Front-end development
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     WHO WE SERVE
+     ========================================================= -->
+
+<section class="section users-section">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            Our Users
+        </div>
+
+        <h2 class="section-title">
+            Who We Serve
+        </h2>
+
+        <p class="section-description">
+
+            The platform can support different users working
+            with agricultural information and technology.
+
+        </p>
+
+    </div>
+
+
+    <div class="users-grid">
+
+
+        <div class="user-card reveal">
+
+            <div class="svg-icon"
+                 style="margin: auto;">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <path d="M4 20
+                             C4 16
+                             7 14
+                             10 14
+                             C13 14
+                             16 16
+                             16 20"/>
+
+                    <circle cx="10"
+                            cy="8"
+                            r="4"/>
+
+                    <path d="M16 11
+                             C18 11
+                             20 13
+                             20 16"/>
+
+                </svg>
+
+            </div>
+
+            <h3>
+                Farmers
+            </h3>
+
+            <p>
+                Support agricultural planning and crop-related decisions.
+            </p>
+
+        </div>
+
+
+
+        <div class="user-card reveal">
+
+            <div class="svg-icon"
+                 style="margin: auto;">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <rect x="4"
+                          y="4"
+                          width="16"
+                          height="16"
+                          rx="2"/>
+
+                    <path d="M8 16
+                             L8 11
+                             M12 16
+                             L12 8
+                             M16 16
+                             L16 13"/>
+
+                </svg>
+
+            </div>
+
+            <h3>
+                Researchers
+            </h3>
+
+            <p>
+                Explore agricultural datasets, trends and AI applications.
+            </p>
+
+        </div>
+
+
+
+        <div class="user-card reveal">
+
+            <div class="svg-icon"
+                 style="margin: auto;">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <path d="M4 21
+                             V5
+                             L12 3
+                             L20 5
+                             V21"/>
+
+                    <path d="M8 9
+                             H16
+                             M8 13
+                             H16
+                             M8 17
+                             H13"/>
+
+                </svg>
+
+            </div>
+
+            <h3>
+                Agricultural Organizations
+            </h3>
+
+            <p>
+                Use data-driven insights for agricultural programs.
+            </p>
+
+        </div>
+
+
+
+        <div class="user-card reveal">
+
+            <div class="svg-icon"
+                 style="margin: auto;">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <path d="M12 3
+                             L19 6
+                             V11
+                             C19 16
+                             16 19
+                             12 21
+                             C8 19
+                             5 16
+                             5 11
+                             V6
+                             L12 3Z"/>
+
+                    <path d="M9 12
+                             L11 14
+                             L15 10"/>
+
+                </svg>
+
+            </div>
+
+            <h3>
+                Government & Institutions
+            </h3>
+
+            <p>
+                Support data-oriented agricultural initiatives.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FUTURE ENHANCEMENTS
+     ========================================================= -->
+
+<section class="section roadmap">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            Future Roadmap
+        </div>
+
+        <h2 class="section-title">
+            Future Enhancements
+        </h2>
+
+        <p class="section-description">
+
+            The following capabilities represent planned directions
+            for making Crop Yield AI a more comprehensive smart
+            agriculture platform.
+
+        </p>
+
+    </div>
+
+
+    <div class="roadmap-grid">
+
+
+        <!-- 01 -->
+
+        <div class="roadmap-card reveal">
+
+            <div class="roadmap-icon">
+
+                <svg viewBox="0 0 24 24"
+```

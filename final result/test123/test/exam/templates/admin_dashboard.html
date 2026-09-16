@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Crop Yield AI</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7f5;
+            color: #263238;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 70px;
+            background: #1b5e20;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 35px;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .logout {
+            color: white;
+            text-decoration: none;
+
+            padding: 10px 18px;
+
+            border: 1px solid white;
+            border-radius: 7px;
+        }
+
+        .logout:hover {
+            background: white;
+            color: #1b5e20;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            padding: 35px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #666;
+        }
+
+        /* ================= CARDS ================= */
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .card {
+
+            background: white;
+
+            padding: 28px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(0,0,0,0.08);
+
+            text-align: center;
+
+            transition: 0.2s;
+        }
+
+        .card:hover {
+
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(0,0,0,0.12);
+        }
+
+        .icon {
+
+            font-size: 38px;
+
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+
+            margin: 8px 0;
+
+            color: #555;
+
+            font-size: 17px;
+        }
+
+        .number {
+
+            font-size: 38px;
+
+            font-weight: bold;
+
+            color: #1b5e20;
+
+            margin-top: 10px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+
+            text-align: center;
+
+            color: #777;
+
+            margin-top: 50px;
+
+            padding: 20px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 800px) {
+
+            .cards {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .cards {
+
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+
+                padding: 0 15px;
+            }
+
+            .container {
+
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<div class="navbar">
+
+    <h2>
+        🌾 Crop Yield AI
+    </h2>
+
+    <div>
+
+        👤 {{ username }}
+
+        &nbsp;&nbsp;
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="logout"
+        >
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+
+    <div class="welcome">
+
+        <h1>
+            Admin Dashboard
+        </h1>
+
+        <p>
+            Crop Yield AI system overview
+        </p>
+
+    </div>
+
+
+    <!-- ================= STATISTICS ================= -->
+
+    <div class="cards">
+
+
+        <!-- DATASET ROWS -->
+
+        <div class="card">
+
+            <div class="icon">
+                📊
+            </div>
+
+            <h3>
+                Dataset Rows
+            </h3>
+
+            <div class="number">
+                {{ total_rows }}
+            </div>
+
+        </div>
+
+
+        <!-- STATES -->
+
+        <div class="card">
+
+            <div class="icon">
+                🇮🇳
+            </div>
+
+            <h3>
+                States
+            </h3>
+
+            <div class="number">
+                {{ total_states }}
+            </div>
+
+        </div>
+
+
+        <!-- DISTRICTS -->
+
+        <div class="card">
+
+            <div class="icon">
+                📍
+            </div>
+
+            <h3>
+                Districts
+            </h3>
+
+            <div class="number">
+                {{ total_districts }}
+            </div>
+
+        </div>
+
+
+        <!-- CROPS -->
+
+        <div class="card">
+
+            <div class="icon">
+                🌾
+            </div>
+
+            <h3>
+                Crops
+            </h3>
+
+            <div class="number">
+                {{ total_crops }}
+            </div>
+
+        </div>
+
+
+        <!-- USERS -->
+
+        <div class="card">
+
+            <div class="icon">
+                👥
+            </div>
+
+            <h3>
+                Registered Users
+            </h3>
+
+            <div class="number">
+                {{ total_users }}
+            </div>
+
+        </div>
+
+
+        <!-- PREDICTIONS -->
+
+        <div class="card">
+
+            <div class="icon">
+                🔮
+            </div>
+
+            <h3>
+                Predictions
+            </h3>
+
+            <div class="number">
+                {{ total_predictions }}
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <div class="footer">
+
+        Crop Yield AI © 2026
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

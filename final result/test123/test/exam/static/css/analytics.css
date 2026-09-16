@@ -1,0 +1,386 @@
+/* =========================================================
+   ANALYTICS PAGE
+========================================================= */
+
+.analytics-hero {
+
+    padding: 130px 8% 70px;
+
+    text-align: center;
+
+}
+
+
+.analytics-hero-content {
+
+    max-width: 850px;
+
+    margin: auto;
+
+}
+
+
+.analytics-label {
+
+    display: inline-block;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.analytics-hero h1 {
+
+    font-size: clamp(42px, 6vw, 72px);
+
+    line-height: 1.05;
+
+    margin: 0 0 25px;
+
+}
+
+
+.analytics-hero h1 span {
+
+    display: inline-block;
+
+}
+
+
+.analytics-hero p {
+
+    max-width: 700px;
+
+    margin: auto;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    opacity: 0.8;
+
+}
+
+
+
+/* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+.analytics-summary {
+
+    width: 84%;
+
+    margin: 0 auto 60px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.analytics-summary-card {
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+.summary-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 27px;
+
+    background: rgba(255,255,255,0.10);
+
+}
+
+
+.analytics-summary-card span {
+
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    opacity: 0.65;
+
+    margin-bottom: 7px;
+
+}
+
+
+.analytics-summary-card strong {
+
+    font-size: 28px;
+
+}
+
+
+
+/* =========================================================
+   CHART CONTAINER
+========================================================= */
+
+.analytics-container {
+
+    width: 84%;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 25px;
+
+}
+
+
+.analytics-chart-card {
+
+    min-width: 0;
+
+    padding: 28px;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+.analytics-chart-card.full-width {
+
+    grid-column: 1 / -1;
+
+}
+
+
+.chart-header span {
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+
+    font-weight: 700;
+
+    opacity: 0.65;
+
+}
+
+
+.chart-header h2 {
+
+    margin: 8px 0 0;
+
+    font-size: 22px;
+
+}
+
+
+.chart-wrapper {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 340px;
+
+    margin-top: 25px;
+
+}
+
+
+.chart-wrapper.chart-small {
+
+    height: 320px;
+
+}
+
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.analytics-actions {
+
+    width: 84%;
+
+    margin: 50px auto 80px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.analytics-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 14px 24px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    border: 1px solid rgba(255,255,255,0.18);
+
+    background: rgba(255,255,255,0.08);
+
+    transition: 0.3s;
+
+}
+
+
+.analytics-button:hover {
+
+    transform: translateY(-3px);
+
+}
+
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .analytics-summary {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .analytics-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .analytics-chart-card.full-width {
+
+        grid-column: auto;
+
+    }
+
+
+    .analytics-summary {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .analytics-hero {
+
+        padding-top: 110px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .analytics-summary,
+    .analytics-container,
+    .analytics-actions {
+
+        width: 92%;
+
+    }
+
+
+    .analytics-chart-card {
+
+        padding: 20px;
+
+    }
+
+
+    .chart-wrapper {
+
+        height: 280px;
+
+    }
+
+
+    .chart-wrapper.chart-small {
+
+        height: 280px;
+
+    }
+
+
+    .analytics-hero h1 {
+
+        font-size: 42px;
+
+    }
+
+}

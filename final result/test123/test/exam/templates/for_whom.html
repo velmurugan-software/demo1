@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Who can use Crop Yield AI">
+
+    <title>
+        Crop Yield AI | For Whom
+    </title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f3f8f0,
+                    #e7f2e3
+                );
+
+            color: #263b28;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* ==============================
+           NAVBAR
+        =============================== */
+
+        .navbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                15px 6%;
+
+            background:
+                rgba(255,255,255,0.97);
+
+            border-bottom:
+                1px solid #dce8d8;
+
+            box-shadow:
+                0 3px 15px
+                rgba(30,70,30,0.05);
+
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            text-decoration: none;
+
+            color: #28552b;
+
+        }
+
+
+        .logo-icon {
+
+            font-size: 34px;
+
+        }
+
+
+        .logo-title {
+
+            display: block;
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+        }
+
+
+        .logo-subtitle {
+
+            display: block;
+
+            font-size: 11px;
+
+            color: #758275;
+
+        }
+
+
+        .nav-menu {
+
+            display: flex;
+
+            gap: 25px;
+
+        }
+
+
+        .nav-menu a {
+
+            text-decoration: none;
+
+            color: #4a594a;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+
+        }
+
+
+        .nav-menu a:hover {
+
+            color: #2f7d32;
+
+        }
+
+
+        .nav-menu .active {
+
+            color: #2f7d32;
+
+        }
+
+
+        .nav-right {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+        }
+
+
+        .username {
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+
+        .logout {
+
+            text-decoration: none;
+
+            background: #2f7d32;
+
+            color: white;
+
+            padding:
+                9px 17px;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+        }
+
+
+        .logout:hover {
+
+            background: #245e27;
+
+        }
+
+
+        /* ==============================
+           HERO
+        =============================== */
+
+        .hero {
+
+            text-align: center;
+
+            padding:
+                70px 20px 55px;
+
+        }
+
+
+        .hero-label {
+
+            display: inline-block;
+
+            padding:
+                8px 16px;
+
+            border-radius: 30px;
+
+            background: #dcefd8;
+
+            color: #347338;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .hero h1 {
+
+            font-size:
+                clamp(35px, 5vw, 58px);
+
+            color: #214d24;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .hero h1 span {
+
+            color: #4c914d;
+
+        }
+
+
+        .hero p {
+
+            max-width: 720px;
+
+            margin: auto;
+
+            line-height: 1.7;
+
+            color: #687468;
+
+            font-size: 16px;
+
+        }
+
+
+        /* ==============================
+           MAIN
+        =============================== */
+
+        .container {
+
+            width:
+                min(1150px, 92%);
+
+            margin:
+                auto;
+
+            padding-bottom:
+                70px;
+
+        }
+
+
+        /* ==============================
+           AUDIENCE GRID
+        =============================== */
+
+        .audience-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 25px;
+
+        }
+
+
+        .audience-card {
+
+            background: white;
+
+            border:
+                1px solid #dce8d8;
+
+            border-radius: 22px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(40,80,40,0.07);
+
+            transition:
+                transform 0.25s,
+                box-shadow 0.25s;
+
+        }
+
+
+        .audience-card:hover {
+
+            transform:
+                translateY(-7px);
+
+            box-shadow:
+                0 18px 45px
+                rgba(40,80,40,0.12);
+
+        }
+
+
+        .card-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            border-radius: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 38px;
+
+            background:
+                #edf7e9;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .card-number {
+
+            color: #72a274;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .audience-card h2 {
+
+            color: #294d2c;
+
+            font-size: 25px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .audience-card p {
+
+            color: #687468;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .features {
+
+            list-style: none;
+
+            display: grid;
+
+            gap: 9px;
+
+        }
+
+
+        .features li {
+
+            color: #486348;
+
+            font-size: 14px;
+
+        }
+
+
+        .features li::before {
+
+            content: "✓";
+
+            display: inline-block;
+
+            margin-right: 8px;
+
+            color: #3c873f;
+
+            font-weight: 700;
+
+        }
+
+
+        /* ==============================
+           WHY SECTION
+        =============================== */
+
+        .why-section {
+
+            margin-top: 55px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #285f2c,
+                    #4d914e
+                );
+
+            color: white;
+
+            border-radius: 25px;
+
+            padding: 45px;
+
+        }
+
+
+        .why-section h2 {
+
+            text-align: center;
+
+            font-size: 30px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .why-section > p {
+
+            text-align: center;
+
+            max-width: 700px;
+
+            margin:
+                0 auto 30px;
+
+            line-height: 1.7;
+
+            opacity: 0.9;
+
+        }
+
+
+        .why-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+        }
+
+
+        .why-card {
+
+            background:
+                rgba(255,255,255,0.12);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.15);
+
+            padding: 25px 18px;
+
+            border-radius: 16px;
+
+            text-align: center;
+
+        }
+
+
+        .why-card span {
+
+            font-size: 32px;
+
+            display: block;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .why-card h3 {
+
+            font-size: 16px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .why-card p {
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            opacity: 0.85;
+
+        }
+
+
+        /* ==============================
+           CTA
+        =============================== */
+
+        .cta {
+
+            text-align: center;
+
+            margin-top: 55px;
+
+            background: white;
+
+            border:
+                1px solid #dce8d8;
+
+            border-radius: 22px;
+
+            padding: 40px;
+
+        }
+
+
+        .cta h2 {
+
+            color: #294d2c;
+
+            margin-bottom: 10px;
+
+            font-size: 29px;
+
+        }
+
+
+        .cta p {
+
+            color: #6c786c;
+
+            margin-bottom: 25px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .cta-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .cta-primary,
+        .cta-secondary {
+
+            text-decoration: none;
+
+            padding:
+                13px 23px;
+
+            border-radius: 10px;
+
+            font-weight: 700;
+
+            font-size: 14px;
+
+        }
+
+
+        .cta-primary {
+
+            background: #2f7d32;
+
+            color: white;
+
+        }
+
+
+        .cta-secondary {
+
+            border:
+                1px solid #4c914d;
+
+            color: #347338;
+
+            background: white;
+
+        }
+
+
+        /* ==============================
+           FOOTER
+        =============================== */
+
+        .footer {
+
+            background: #1e3521;
+
+            color: white;
+
+            padding:
+                35px 6%;
+
+            text-align: center;
+
+        }
+
+
+        .footer-brand {
+
+            font-size: 19px;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .footer-links {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 22px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .footer-links a {
+
+            color: #d6e5d5;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+        }
+
+
+        .footer-links a:hover {
+
+            color: white;
+
+        }
+
+
+        .copyright {
+
+            color: #9daf9b;
+
+            font-size: 12px;
+
+        }
+
+
+        /* ==============================
+           RESPONSIVE
+        =============================== */
+
+        @media(max-width: 900px) {
+
+            .nav-menu {
+
+                display: none;
+
+            }
+
+
+            .audience-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .why-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media(max-width: 600px) {
+
+            .navbar {
+
+                padding:
+                    12px 4%;
+
+            }
+
+
+            .username {
+
+                display: none;
+
+            }
+
+
+            .hero {
+
+                padding-top:
+                    45px;
+
+            }
+
+
+            .audience-card {
+
+                padding:
+                    25px;
+
+            }
+
+
+            .why-section {
+
+                padding:
+                    30px 20px;
+
+            }
+
+
+            .why-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .cta {
+
+                padding:
+                    30px 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
+
+<header class="navbar">
+
+
+    <a href="{{ url_for('farmer_dashboard') }}"
+       class="logo">
+
+
+        <div class="logo-icon">
+            🌾
+        </div>
+
+
+        <div>
+
+            <span class="logo-title">
+                Crop Yield AI
+            </span>
+
+            <span class="logo-subtitle">
+                Smart Agriculture
+            </span>
+
+        </div>
+
+
+    </a>
+
+
+
+    <nav class="nav-menu">
+
+
+        <a href="{{ url_for('farmer_dashboard') }}">
+            Home
+        </a>
+
+
+        <a href="{{ url_for('solutions') }}">
+            Solutions
+        </a>
+
+
+        <a href="{{ url_for('for_whom') }}"
+           class="active">
+
+            For Whom
+
+        </a>
+
+
+        <a href="{{ url_for('history') }}">
+            History
+        </a>
+
+
+        <a href="{{ url_for('analytics') }}">
+            Analytics
+        </a>
+
+
+    </nav>
+
+
+
+    <div class="nav-right">
+
+
+        <span class="username">
+
+            Hi, {{ username }}
+
+        </span>
+
+
+        <a href="{{ url_for('logout') }}"
+           class="logout">
+
+            Logout
+
+        </a>
+
+
+    </div>
+
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section class="hero">
+
+
+    <span class="hero-label">
+        👥 WHO CAN USE CROP YIELD AI?
+    </span>
+
+
+    <h1>
+
+        Built for
+        <span>
+            Modern Agriculture
+        </span>
+
+    </h1>
+
+
+    <p>
+
+        Crop Yield AI is designed for farmers,
+        agriculture students, researchers and
+        agricultural organizations who want to
+        use data and artificial intelligence to
+        make better agricultural decisions.
+
+    </p>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="container">
+
+
+    <div class="audience-grid">
+
+
+        <!-- FARMERS -->
+
+        <article class="audience-card">
+
+
+            <div class="card-icon">
+                👨‍🌾
+            </div>
+
+
+            <div class="card-number">
+                01 — FARMERS
+            </div>
+
+
+            <h2>
+                Farmers
+            </h2>
+
+
+            <p>
+
+                Farmers can use Crop Yield AI to
+                estimate crop yield and understand
+                environmental conditions before
+                making cultivation decisions.
+
+            </p>
+
+
+            <ul class="features">
+
+                <li>
+                    Predict expected crop yield
+                </li>
+
+                <li>
+                    Analyze weather conditions
+                </li>
+
+                <li>
+                    Compare crop performance
+                </li>
+
+                <li>
+                    Use location-based information
+                </li>
+
+            </ul>
+
+
+        </article>
+
+
+
+        <!-- STUDENTS -->
+
+        <article class="audience-card">
+
+
+            <div class="card-icon">
+                🎓
+            </div>
+
+
+            <div class="card-number">
+                02 — STUDENTS
+            </div>
+
+
+            <h2>
+                Agriculture Students
+            </h2>
+
+
+            <p>
+
+                Students can explore how machine
+                learning and artificial intelligence
+                can be applied to real-world
+                agricultural problems.
+
+            </p>
+
+
+            <ul class="features">
+
+                <li>
+                    Learn machine learning applications
+                </li>
+
+                <li>
+                    Explore agricultural datasets
+                </li>
+
+                <li>
+                    Study crop yield prediction
+                </li>
+
+                <li>
+                    Understand data-driven agriculture
+                </li>
+
+            </ul>
+
+
+        </article>
+
+
+
+        <!-- ORGANIZATIONS -->
+
+        <article class="audience-card">
+
+
+            <div class="card-icon">
+                🏢
+            </div>
+
+
+            <div class="card-number">
+                03 — ORGANIZATIONS
+            </div>
+
+
+            <h2>
+                Agriculture Organizations
+            </h2>
+
+
+            <p>
+
+                Agricultural organizations can use
+                crop data and prediction results to
+                support planning, monitoring and
+                agricultural analysis.
+
+            </p>
+
+
+            <ul class="features">
+
+                <li>
+                    Analyze agricultural datasets
+                </li>
+
+                <li>
+                    Monitor crop performance
+                </li>
+
+                <li>
+                    Generate useful insights
+                </li>
+
+                <li>
+                    Support agricultural planning
+                </li>
+
+            </ul>
+
+
+        </article>
+
+
+
+        <!-- RESEARCHERS -->
+
+        <article class="audience-card">
+
+
+            <div class="card-icon">
+                🔬
+            </div>
+
+
+            <div class="card-number">
+                04 — RESEARCHERS
+            </div>
+
+
+            <h2>
+                Researchers
+            </h2>
+
+
+            <p>
+
+                Researchers can use agricultural
+                datasets and prediction techniques
+                to explore machine learning
+                applications in crop production.
+
+            </p>
+
+
+            <ul class="features">
+
+                <li>
+                    Analyze crop yield datasets
+                </li>
+
+                <li>
+                    Study prediction models
+                </li>
+
+                <li>
+                    Explore environmental factors
+                </li>
+
+                <li>
+                    Develop agricultural AI solutions
+                </li>
+
+            </ul>
+
+
+        </article>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         WHY CROP YIELD AI
+    ================================================== -->
+
+    <section class="why-section">
+
+
+        <h2>
+            Why Use Crop Yield AI?
+        </h2>
+
+
+        <p>
+
+            The platform combines agricultural
+            data, machine learning and environmental
+            information to provide useful insights.
+
+        </p>
+
+
+        <div class="why-grid">
+
+
+            <div class="why-card">
+
+                <span>
+                    🤖
+                </span>
+
+                <h3>
+                    AI Powered
+                </h3>
+
+                <p>
+                    Intelligent analysis using
+                    artificial intelligence.
+                </p>
+
+            </div>
+
+
+
+            <div class="why-card">
+
+                <span>
+                    📊
+                </span>
+
+                <h3>
+                    Data Driven
+                </h3>
+
+                <p>
+                    Agricultural decisions supported
+                    by available data.
+                </p>
+
+            </div>
+
+
+
+            <div class="why-card">
+
+                <span>
+                    🌦️
+                </span>
+
+                <h3>
+                    Weather Data
+                </h3>
+
+                <p>
+                    Environmental conditions can
+                    be considered in analysis.
+                </p>
+
+            </div>
+
+
+
+            <div class="why-card">
+
+                <span>
+                    📍
+                </span>
+
+                <h3>
+                    Location Based
+                </h3>
+
+                <p>
+                    Location information can be
+                    used for crop analysis.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         CTA
+    ================================================== -->
+
+    <section class="cta">
+
+
+        <h2>
+            Ready to Explore Crop Yield AI?
+        </h2>
+
+
+        <p>
+
+            Start with crop yield prediction or
+            explore live agriculture solutions.
+
+        </p>
+
+
+        <div class="cta-buttons">
+
+
+            <a href="{{ url_for('farmer_dashboard') }}"
+               class="cta-primary">
+
+                🌾 Start Prediction
+
+            </a>
+
+
+            <a href="{{ url_for('solutions') }}"
+               class="cta-secondary">
+
+                🌱 Explore Solutions
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="footer">
+
+
+    <div class="footer-brand">
+
+        🌾 Crop Yield AI
+
+    </div>
+
+
+    <div class="footer-links">
+
+
+        <a href="{{ url_for('farmer_dashboard') }}">
+            Home
+        </a>
+
+
+        <a href="{{ url_for('solutions') }}">
+            Solutions
+        </a>
+
+
+        <a href="{{ url_for('for_whom') }}">
+            For Whom
+        </a>
+
+
+        <a href="{{ url_for('history') }}">
+            History
+        </a>
+
+
+        <a href="{{ url_for('analytics') }}">
+            Analytics
+        </a>
+
+
+    </div>
+
+
+    <p class="copyright">
+
+        © 2026 Crop Yield AI.
+        Smart Agriculture Technology.
+
+    </p>
+
+
+</footer>
+
+
+</body>
+
+</html>

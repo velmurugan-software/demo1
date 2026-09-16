@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Crop Yield AI Solutions - Live Agriculture Information">
+
+    <title>
+        Crop Yield AI | Solutions
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4f8f1,
+                    #e8f3e4
+                );
+
+            color: #203020;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ====================================================== */
+
+        .navbar {
+
+            background:
+                rgba(255,255,255,0.96);
+
+            border-bottom:
+                1px solid #dce8d8;
+
+            padding:
+                15px 6%;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap: 25px;
+
+            position:
+                sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+        }
+
+
+        .logo {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap: 12px;
+
+            text-decoration:
+                none;
+
+            color:
+                #244b24;
+
+        }
+
+
+        .logo-icon {
+
+            font-size:
+                32px;
+
+        }
+
+
+        .logo-title {
+
+            display:
+                block;
+
+            font-size:
+                20px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .logo-subtitle {
+
+            display:
+                block;
+
+            font-size:
+                12px;
+
+            color:
+                #71806f;
+
+        }
+
+
+        .nav-menu {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                24px;
+
+        }
+
+
+        .nav-menu a {
+
+            text-decoration:
+                none;
+
+            color:
+                #435443;
+
+            font-size:
+                14px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .nav-menu a:hover {
+
+            color:
+                #2f7d32;
+
+        }
+
+
+        .nav-right {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                15px;
+
+        }
+
+
+        .nav-user {
+
+            font-size:
+                14px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .logout-button {
+
+            text-decoration:
+                none;
+
+            padding:
+                9px 17px;
+
+            border-radius:
+                8px;
+
+            background:
+                #2f7d32;
+
+            color:
+                white;
+
+        }
+
+
+        /* =====================================================
+           MAIN
+        ====================================================== */
+
+        .container {
+
+            width:
+                min(1180px, 92%);
+
+            margin:
+                0 auto;
+
+            padding:
+                45px 0 70px;
+
+        }
+
+
+        .page-header {
+
+            text-align:
+                center;
+
+            margin-bottom:
+                35px;
+
+        }
+
+
+        .page-header .label {
+
+            display:
+                inline-block;
+
+            padding:
+                8px 15px;
+
+            border-radius:
+                50px;
+
+            background:
+                #dcefd8;
+
+            color:
+                #347338;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                1px;
+
+            margin-bottom:
+                15px;
+
+        }
+
+
+        .page-header h1 {
+
+            font-size:
+                clamp(32px, 5vw, 55px);
+
+            margin-bottom:
+                12px;
+
+            color:
+                #214d24;
+
+        }
+
+
+        .page-header p {
+
+            max-width:
+                700px;
+
+            margin:
+                auto;
+
+            line-height:
+                1.7;
+
+            color:
+                #657365;
+
+        }
+
+
+        /* =====================================================
+           CROP SELECTOR
+        ====================================================== */
+
+        .control-card {
+
+            background:
+                white;
+
+            border:
+                1px solid #dce8d8;
+
+            border-radius:
+                20px;
+
+            padding:
+                25px;
+
+            margin-bottom:
+                30px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(40,80,40,0.07);
+
+        }
+
+
+        .control-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr auto;
+
+            gap:
+                15px;
+
+            align-items:
+                end;
+
+        }
+
+
+        .field label {
+
+            display:
+                block;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+            margin-bottom:
+                8px;
+
+            color:
+                #405440;
+
+        }
+
+
+        .field select,
+        .field input {
+
+            width:
+                100%;
+
+            padding:
+                13px 14px;
+
+            border:
+                1px solid #cedbca;
+
+            border-radius:
+                10px;
+
+            background:
+                white;
+
+            outline:
+                none;
+
+            font-size:
+                14px;
+
+        }
+
+
+        .field select:focus,
+        .field input:focus {
+
+            border-color:
+                #4d914f;
+
+        }
+
+
+        .load-button {
+
+            border:
+                none;
+
+            background:
+                #2f7d32;
+
+            color:
+                white;
+
+            padding:
+                13px 22px;
+
+            border-radius:
+                10px;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .load-button:hover {
+
+            background:
+                #246527;
+
+        }
+
+
+        /* =====================================================
+           CURRENT CROP
+        ====================================================== */
+
+        .crop-card {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #245b2b,
+                    #4c914d
+                );
+
+            color:
+                white;
+
+            border-radius:
+                25px;
+
+            padding:
+                40px;
+
+            text-align:
+                center;
+
+            margin-bottom:
+                30px;
+
+            box-shadow:
+                0 20px 45px
+                rgba(36,91,43,0.22);
+
+        }
+
+
+        .crop-card .small-title {
+
+            font-size:
+                12px;
+
+            letter-spacing:
+                2px;
+
+            opacity:
+                0.8;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .crop-icon {
+
+            font-size:
+                65px;
+
+            margin:
+                15px 0;
+
+        }
+
+
+        .crop-card h2 {
+
+            font-size:
+                38px;
+
+            margin-bottom:
+                8px;
+
+        }
+
+
+        .crop-card p {
+
+            opacity:
+                0.9;
+
+        }
+
+
+        /* =====================================================
+           SECTION TITLE
+        ====================================================== */
+
+        .section-title {
+
+            margin:
+                35px 0 18px;
+
+        }
+
+
+        .section-title h2 {
+
+            font-size:
+                27px;
+
+            color:
+                #274c29;
+
+        }
+
+
+        .section-title p {
+
+            margin-top:
+                5px;
+
+            color:
+                #718071;
+
+        }
+
+
+        /* =====================================================
+           WEATHER
+        ====================================================== */
+
+        .weather-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap:
+                18px;
+
+        }
+
+
+        .weather-card {
+
+            background:
+                white;
+
+            border:
+                1px solid #dce8d8;
+
+            border-radius:
+                18px;
+
+            padding:
+                25px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(40,80,40,0.06);
+
+        }
+
+
+        .weather-icon {
+
+            font-size:
+                30px;
+
+            margin-bottom:
+                12px;
+
+        }
+
+
+        .weather-name {
+
+            color:
+                #6d796d;
+
+            font-size:
+                13px;
+
+            margin-bottom:
+                7px;
+
+        }
+
+
+        .weather-value {
+
+            font-size:
+                28px;
+
+            font-weight:
+                700;
+
+            color:
+                #264c29;
+
+        }
+
+
+        .weather-source {
+
+            margin-top:
+                20px;
+
+            color:
+                #758175;
+
+            font-size:
+                12px;
+
+        }
+
+
+        /* =====================================================
+           YOUTUBE
+        ====================================================== */
+
+        .video-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                20px;
+
+        }
+
+
+        .video-card {
+
+            background:
+                white;
+
+            border:
+                1px solid #dce8d8;
+
+            border-radius:
+                18px;
+
+            overflow:
+                hidden;
+
+            box-shadow:
+                0 8px 25px
+                rgba(40,80,40,0.06);
+
+        }
+
+
+        .video-top {
+
+            height:
+                140px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                #f2e8e8;
+
+            font-size:
+                55px;
+
+        }
+
+
+        .video-content {
+
+            padding:
+                20px;
+
+        }
+
+
+        .video-content h3 {
+
+            font-size:
+                18px;
+
+            margin-bottom:
+                8px;
+
+            color:
+                #284a2a;
+
+        }
+
+
+        .video-content p {
+
+            font-size:
+                14px;
+
+            line-height:
+                1.6;
+
+            color:
+                #6d796d;
+
+            margin-bottom:
+                15px;
+
+        }
+
+
+        .video-link {
+
+            display:
+                inline-block;
+
+            text-decoration:
+                none;
+
+            background:
+                #d83333;
+
+            color:
+                white;
+
+            padding:
+                10px 15px;
+
+            border-radius:
+                8px;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        /* =====================================================
+           NEWS
+        ====================================================== */
+
+        .news-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                20px;
+
+        }
+
+
+        .news-card {
+
+            background:
+                white;
+
+            border:
+                1px solid #dce8d8;
+
+            border-radius:
+                18px;
+
+            padding:
+                22px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(40,80,40,0.06);
+
+        }
+
+
+        .news-icon {
+
+            font-size:
+                30px;
+
+            margin-bottom:
+                12px;
+
+        }
+
+
+        .news-card h3 {
+
+            font-size:
+                17px;
+
+            line-height:
+                1.4;
+
+            margin-bottom:
+                10px;
+
+            color:
+                #284a2a;
+
+        }
+
+
+        .news-date {
+
+            color:
+                #7b867a;
+
+            font-size:
+                12px;
+
+            margin-bottom:
+                15px;
+
+        }
+
+
+        .news-link {
+
+            text-decoration:
+                none;
+
+            color:
+                #347338;
+
+            font-weight:
+                700;
+
+            font-size:
+                13px;
+
+        }
+
+
+        .no-data {
+
+            background:
+                white;
+
+            border:
+                1px dashed #c9d7c7;
+
+            border-radius:
+                15px;
+
+            padding:
+                30px;
+
+            text-align:
+                center;
+
+            color:
+                #718071;
+
+        }
+
+
+        /* =====================================================
+           DATASET
+        ====================================================== */
+
+        .dataset-card {
+
+            margin-top:
+                35px;
+
+            padding:
+                22px;
+
+            border-radius:
+                18px;
+
+            background:
+                #edf6ea;
+
+            border:
+                1px solid #d5e6d0;
+
+        }
+
+
+        .dataset-card strong {
+
+            color:
+                #28582c;
+
+        }
+
+
+        /* =====================================================
+           BACK BUTTON
+        ====================================================== */
+
+        .back-area {
+
+            text-align:
+                center;
+
+            margin-top:
+                45px;
+
+        }
+
+
+        .back-button {
+
+            display:
+                inline-block;
+
+            padding:
+                13px 24px;
+
+            border-radius:
+                10px;
+
+            border:
+                1px solid #4c914d;
+
+            color:
+                #347338;
+
+            text-decoration:
+                none;
+
+            font-weight:
+                700;
+
+            background:
+                white;
+
+        }
+
+
+        .back-button:hover {
+
+            background:
+                #347338;
+
+            color:
+                white;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media(max-width: 900px) {
+
+            .nav-menu {
+                display: none;
+            }
+
+            .control-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .weather-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .video-grid,
+            .news-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        @media(max-width: 550px) {
+
+            .navbar {
+                padding:
+                    12px 4%;
+            }
+
+            .nav-right .language {
+                display:
+                    none;
+            }
+
+            .nav-user {
+                display:
+                    none;
+            }
+
+            .container {
+                width:
+                    94%;
+                padding-top:
+                    30px;
+            }
+
+            .crop-card {
+                padding:
+                    30px 20px;
+            }
+
+            .crop-card h2 {
+                font-size:
+                    30px;
+            }
+
+            .weather-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================== -->
+
+<header class="navbar">
+
+
+    <a href="{{ url_for('farmer_dashboard') }}"
+       class="logo">
+
+        <div class="logo-icon">
+            🌾
+        </div>
+
+        <div>
+
+            <span class="logo-title">
+                Crop Yield AI
+            </span>
+
+            <span class="logo-subtitle">
+                Smart Agriculture
+            </span>
+
+        </div>
+
+    </a>
+
+
+
+    <nav class="nav-menu">
+
+        <a href="{{ url_for('farmer_dashboard') }}">
+            Home
+        </a>
+
+        <a href="{{ url_for('solutions') }}">
+            Solutions
+        </a>
+
+        <a href="{{ url_for('history') }}">
+            History
+        </a>
+
+        <a href="{{ url_for('analytics') }}">
+            Analytics
+        </a>
+
+    </nav>
+
+
+
+    <div class="nav-right">
+
+        <span class="nav-user">
+
+            Hi, {{ username }}
+
+        </span>
+
+
+        <a href="{{ url_for('logout') }}"
+           class="logout-button">
+
+            Logout
+
+        </a>
+
+    </div>
+
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================== -->
+
+<main class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+
+        <span class="label">
+            🌱 LIVE AGRICULTURE INFORMATION
+        </span>
+
+
+        <h1>
+            🌾 Crop Yield AI Solutions
+        </h1>
+
+
+        <p>
+            Get crop-specific weather information,
+            YouTube farming resources, agriculture news
+            and historical crop information.
+        </p>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         CROP SELECTOR
+    ====================================================== -->
+
+    <div class="control-card">
+
+
+        <form method="GET"
+              action="{{ url_for('solutions') }}">
+
+
+            <div class="control-grid">
+
+
+                <!-- CROP -->
+
+                <div class="field">
+
+                    <label>
+                        Select Crop
+                    </label>
+
+                    <select name="crop"
+                            required>
+
+                        {% for item in dataset_crops %}
+
+                            <option value="{{ item }}"
+                                {% if item|lower == crop|lower %}
+                                    selected
+                                {% endif %}>
+
+                                {{ item }}
+
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <!-- LOCATION -->
+
+                <div class="field">
+
+                    <label>
+                        Location
+                    </label>
+
+                    <input type="text"
+                           name="location"
+                           value="{{ location }}"
+                           placeholder="Example: Vellore, Tamil Nadu">
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <button type="submit"
+                        class="load-button">
+
+                    🔄 Load Information
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         CURRENT CROP
+    ====================================================== -->
+
+    <section class="crop-card">
+
+
+        <span class="small-title">
+            CURRENT CROP
+        </span>
+
+
+        <div class="crop-icon">
+            🌾
+        </div>
+
+
+        <h2>
+            {{ crop }}
+        </h2>
+
+
+        <p>
+            Selected Crop: <strong>{{ crop }}</strong>
+        </p>
+
+
+        {% if location %}
+
+            <p style="margin-top:8px;">
+
+                📍 {{ location }}
+
+            </p>
+
+        {% endif %}
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         WEATHER
+    ====================================================== -->
+
+    <div class="section-title">
+
+        <h2>
+            🌦️ Weather Information
+        </h2>
+
+        <p>
+            Current environmental conditions for
+            the selected location.
+        </p>
+
+    </div>
+
+
+
+    <div class="weather-grid">
+
+
+        <!-- TEMPERATURE -->
+
+        <div class="weather-card">
+
+            <div class="weather-icon">
+                🌡️
+            </div>
+
+            <div class="weather-name">
+                Temperature
+            </div>
+
+            <div class="weather-value">
+
+                {{ weather.temperature }}°C
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HUMIDITY -->
+
+        <div class="weather-card">
+
+            <div class="weather-icon">
+                💧
+            </div>
+
+            <div class="weather-name">
+                Humidity
+            </div>
+
+            <div class="weather-value">
+
+                {{ weather.humidity }}%
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RAINFALL -->
+
+        <div class="weather-card">
+
+            <div class="weather-icon">
+                🌧️
+            </div>
+
+            <div class="weather-name">
+                Rainfall
+            </div>
+
+            <div class="weather-value">
+
+                {{ weather.rainfall }} mm
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SOIL MOISTURE -->
+
+        <div class="weather-card">
+
+            <div class="weather-icon">
+                🌱
+            </div>
+
+            <div class="weather-name">
+                Soil Moisture
+            </div>
+
+            <div class="weather-value">
+
+                {{ weather.soil_moisture }}%
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="weather-source">
+
+        Weather source:
+        {{ weather.source }}
+
+    </div>
+
+
+
+    <!-- =====================================================
+         YOUTUBE
+    ====================================================== -->
+
+    <div class="section-title">
+
+        <h2>
+            📺 Latest YouTube Farming Videos
+        </h2>
+
+        <p>
+            Search YouTube for the latest farming
+            information related to {{ crop }}.
+        </p>
+
+    </div>
+
+
+
+    {% if youtube_videos %}
+
+
+        <div class="video-grid">
+
+
+            {% for video in youtube_videos %}
+
+
+                <article class="video-card">
+
+
+                    <div class="video-top">
+                        ▶️
+                    </div>
+
+
+                    <div class="video-content">
+
+
+                        <h3>
+                            {{ video.title }}
+                        </h3>
+
+
+                        <p>
+                            {{ video.description }}
+                        </p>
+
+
+                        <a href="{{ video.link }}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="video-link">
+
+                            ▶ Search YouTube
+
+                        </a>
+
+
+                    </div>
+
+
+                </article>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    {% else %}
+
+
+        <div class="no-data">
+
+            No YouTube information available.
+
+        </div>
+
+
+    {% endif %}
+
+
+
+    <!-- =====================================================
+         NEWS
+    ====================================================== -->
+
+    <div class="section-title">
+
+        <h2>
+            📰 Latest Agriculture News
+        </h2>
+
+        <p>
+            Latest agriculture news related to
+            {{ crop }}.
+        </p>
+
+    </div>
+
+
+
+    {% if news %}
+
+
+        <div class="news-grid">
+
+
+            {% for item in news[:6] %}
+
+
+                <article class="news-card">
+
+
+                    <div class="news-icon">
+                        📰
+                    </div>
+
+
+                    <h3>
+                        {{ item.title }}
+                    </h3>
+
+
+                    {% if item.published %}
+
+                        <div class="news-date">
+
+                            {{ item.published }}
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <a href="{{ item.link }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="news-link">
+
+                        Read Full News →
+
+                    </a>
+
+
+                </article>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    {% else %}
+
+
+        <div class="no-data">
+
+            No agriculture news found for
+            {{ crop }} at the moment.
+
+        </div>
+
+
+    {% endif %}
+
+
+
+    <!-- =====================================================
+         HISTORICAL DATA
+    ====================================================== -->
+
+    <div class="section-title">
+
+        <h2>
+            📊 Historical Crop Information
+        </h2>
+
+        <p>
+            Information available in your current dataset.
+        </p>
+
+    </div>
+
+
+
+    <div class="weather-grid">
+
+
+        <div class="weather-card">
+
+            <div class="weather-icon">
+                📋
+            </div>
+
+            <div class="weather-name">
+                Historical Records
+            </div>
+
+            <div class="weather-value">
+
+                {{ historical.records }}
+
+            </div>
+
+        </div>
+
+
+
+        <div class="weather-card">
+
+            <div class="weather-icon">
+                📊
+            </div>
+
+            <div class="weather-name">
+                Average Yield
+            </div>
+
+            <div class="weather-value">
+
+                {{ historical.average_yield }}
+
+            </div>
+
+        </div>
+
+
+
+        <div class="weather-card">
+
+            <div class="weather-icon">
+                ⬆️
+            </div>
+
+            <div class="weather-name">
+                Maximum Yield
+            </div>
+
+            <div class="weather-value">
+
+                {{ historical.maximum_yield }}
+
+            </div>
+
+        </div>
+
+
+
+        <div class="weather-card">
+
+            <div class="weather-icon">
+                📅
+            </div>
+
+            <div class="weather-name">
+                Latest Year
+            </div>
+
+            <div class="weather-value">
+
+                {{ historical.latest_year or "N/A" }}
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         DATASET STATUS
+    ====================================================== -->
+
+    <div class="dataset-card">
+
+
+        <strong>
+            🗃️ Dataset Information
+        </strong>
+
+
+        <p style="margin-top:8px;">
+
+            Current dataset contains
+
+            <strong>
+                {{ dataset_records }}
+            </strong>
+
+            records.
+
+        </p>
+
+
+        <p style="margin-top:5px;">
+
+            Crop information is automatically
+            refreshed when the CSV dataset changes.
+
+        </p>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         BACK
+    ====================================================== -->
+
+    <div class="back-area">
+
+
+        <a href="{{ url_for('farmer_dashboard') }}"
+           class="back-button">
+
+            ← Back to Farmer Dashboard
+
+        </a>
+
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

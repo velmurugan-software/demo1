@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Register | Crop Yield AI</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(5, 55, 25, 0.96),
+                rgba(25, 110, 45, 0.92),
+                rgba(102, 187, 106, 0.85)
+            );
+
+        padding: 25px;
+    }
+
+    /* Main Card */
+
+    .register-card {
+        width: 100%;
+        max-width: 950px;
+        min-height: 600px;
+
+        display: grid;
+        grid-template-columns: 42% 58%;
+
+        background: #ffffff;
+        border-radius: 25px;
+
+        overflow: hidden;
+
+        box-shadow:
+            0 25px 70px rgba(0, 0, 0, 0.30);
+    }
+
+    /* Left Section */
+
+    .left-section {
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+
+        padding: 45px;
+
+        color: white;
+
+        background:
+            linear-gradient(
+                rgba(8, 75, 30, 0.88),
+                rgba(27, 94, 32, 0.94)
+            );
+    }
+
+    .plant-icon {
+        width: 105px;
+        height: 105px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: rgba(255, 255, 255, 0.15);
+
+        border: 1px solid rgba(255, 255, 255, 0.25);
+
+        border-radius: 50%;
+
+        font-size: 55px;
+
+        margin-bottom: 25px;
+
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.20);
+    }
+
+    .left-section h1 {
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+
+    .left-section p {
+        font-size: 15px;
+        line-height: 1.7;
+
+        color: #e8f5e9;
+
+        max-width: 300px;
+    }
+
+    .features {
+        margin-top: 30px;
+
+        text-align: left;
+
+        width: 100%;
+        max-width: 290px;
+    }
+
+    .feature {
+        display: flex;
+        align-items: center;
+
+        gap: 12px;
+
+        margin: 14px 0;
+
+        font-size: 14px;
+    }
+
+    .feature-icon {
+        width: 30px;
+        height: 30px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(255, 255, 255, 0.15);
+
+        border-radius: 50%;
+    }
+
+    /* Right Section */
+
+    .right-section {
+        padding: 50px 55px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .heading {
+        margin-bottom: 25px;
+    }
+
+    .heading h2 {
+        color: #1b5e20;
+
+        font-size: 30px;
+
+        margin-bottom: 8px;
+    }
+
+    .heading p {
+        color: #777;
+
+        font-size: 14px;
+    }
+
+    /* Flash Message */
+
+    .message {
+        background: #ffebee;
+        color: #c62828;
+
+        border-left: 4px solid #c62828;
+
+        padding: 11px 13px;
+
+        border-radius: 7px;
+
+        margin-bottom: 18px;
+
+        font-size: 14px;
+    }
+
+    /* Form */
+
+    .form-group {
+        margin-bottom: 17px;
+    }
+
+    label {
+        display: block;
+
+        color: #333;
+
+        font-size: 14px;
+
+        font-weight: bold;
+
+        margin-bottom: 7px;
+    }
+
+    .input-box {
+        position: relative;
+    }
+
+    .input-box span {
+        position: absolute;
+
+        left: 14px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        font-size: 17px;
+
+        color: #4caf50;
+    }
+
+    input {
+        width: 100%;
+
+        padding: 13px 14px 13px 43px;
+
+        border: 1px solid #d5d5d5;
+
+        border-radius: 9px;
+
+        outline: none;
+
+        font-size: 14px;
+
+        transition: 0.25s;
+    }
+
+    input:focus {
+        border-color: #43a047;
+
+        box-shadow:
+            0 0 0 3px rgba(67, 160, 71, 0.12);
+    }
+
+    input::placeholder {
+        color: #aaa;
+    }
+
+    /* Password Requirements */
+
+    .password-info {
+        font-size: 11px;
+
+        color: #888;
+
+        margin-top: 5px;
+    }
+
+    /* Register Button */
+
+    .register-btn {
+        width: 100%;
+
+        padding: 14px;
+
+        margin-top: 7px;
+
+        border: none;
+
+        border-radius: 9px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #2e7d32,
+                #43a047
+            );
+
+        color: white;
+
+        font-size: 16px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        transition: 0.25s;
+
+        box-shadow:
+            0 7px 18px rgba(46, 125, 50, 0.25);
+    }
+
+    .register-btn:hover {
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 10px 25px rgba(46, 125, 50, 0.35);
+    }
+
+    /* Farmer Information */
+
+    .info {
+        margin-top: 18px;
+
+        padding: 12px 14px;
+
+        background: #f1f8e9;
+
+        border: 1px solid #dcedc8;
+
+        border-radius: 8px;
+
+        color: #33691e;
+
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+    /* Login */
+
+    .login {
+        text-align: center;
+
+        margin-top: 22px;
+
+        font-size: 14px;
+
+        color: #777;
+    }
+
+    .login a {
+        color: #2e7d32;
+
+        font-weight: bold;
+
+        text-decoration: none;
+
+        margin-left: 4px;
+    }
+
+    .login a:hover {
+        text-decoration: underline;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 800px) {
+
+        .register-card {
+            grid-template-columns: 1fr;
+        }
+
+        .left-section {
+            padding: 35px 25px;
+        }
+
+        .features {
+            display: none;
+        }
+
+        .right-section {
+            padding: 40px 30px;
+        }
+    }
+
+    @media (max-width: 450px) {
+
+        body {
+            padding: 15px;
+        }
+
+        .register-card {
+            border-radius: 18px;
+        }
+
+        .right-section {
+            padding: 30px 22px;
+        }
+
+        .heading h2 {
+            font-size: 25px;
+        }
+
+        .left-section h1 {
+            font-size: 26px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="register-card">
+
+    <!-- LEFT SIDE -->
+
+    <div class="left-section">
+
+        <div class="plant-icon">
+            🌱
+        </div>
+
+        <h1>Crop Yield AI</h1>
+
+        <p>
+            Smart agriculture powered by Artificial Intelligence.
+            Create your account and start making better farming decisions.
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                <div class="feature-icon">🌾</div>
+                <span>AI Crop Yield Prediction</span>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🌦️</div>
+                <span>Weather & Crop Analysis</span>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <span>Prediction History & Reports</span>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🤖</div>
+                <span>AI Agricultural Assistance</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+
+    <div class="right-section">
+
+        <div class="heading">
+
+            <h2>Create Account</h2>
+
+            <p>
+                Register as a farmer to access Crop Yield AI.
+            </p>
+
+        </div>
+
+
+        <!-- Flask Flash Messages -->
+
+        {% with messages = get_flashed_messages() %}
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div class="message">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- Registration Form -->
+
+        <form method="POST">
+
+            <!-- USERNAME -->
+
+            <div class="form-group">
+
+                <label for="username">
+                    User ID
+                </label>
+
+                <div class="input-box">
+
+                    <span>👤</span>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        minlength="3"
+                        maxlength="50"
+                        placeholder="Create your User ID"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <div class="input-box">
+
+                    <span>🔒</span>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        minlength="6"
+                        placeholder="Create your password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+                <div class="password-info">
+                    Password must contain at least 6 characters.
+                </div>
+
+            </div>
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="confirm_password">
+                    Confirm Password
+                </label>
+
+                <div class="input-box">
+
+                    <span>🔐</span>
+
+                    <input
+                        type="password"
+                        id="confirm_password"
+                        name="confirm_password"
+                        minlength="6"
+                        placeholder="Confirm your password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- REGISTER -->
+
+            <button
+                type="submit"
+                class="register-btn"
+            >
+                Create Farmer Account
+            </button>
+
+        </form>
+
+
+        <!-- ROLE INFORMATION -->
+
+        <div class="info">
+
+            🌱 <b>Farmer Account:</b>
+            New registrations are automatically assigned the
+            <b>Farmer</b> role.
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <div class="login">
+
+            Already have an account?
+
+            <a href="{{ url_for('login') }}">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</body>
+
+</html>

@@ -1,0 +1,545 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef8f0,
+            #f7fbf8
+        );
+
+    color: #1f2937;
+}
+
+
+.page {
+
+    min-height: 100vh;
+
+    padding: 30px;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    margin-bottom: 40px;
+
+}
+
+
+.header h1 {
+
+    margin: 0;
+
+    font-size: 32px;
+
+}
+
+
+.header p {
+
+    margin-top: 8px;
+
+    color: #64748b;
+
+}
+
+
+.logout {
+
+    text-decoration: none;
+
+    padding: 12px 22px;
+
+    border-radius: 10px;
+
+    background: #ef4444;
+
+    color: white;
+
+    font-weight: bold;
+
+}
+
+
+/* =====================================================
+   TWO MODE CARDS
+===================================================== */
+
+.mode-container {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+
+}
+
+
+.mode-card {
+
+    min-height: 420px;
+
+    padding: 50px 40px;
+
+    border-radius: 24px;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+
+.mode-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.12);
+
+}
+
+
+.normal-card {
+
+    background: white;
+
+    border:
+        2px solid #dbeafe;
+
+}
+
+
+.ai-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0fdf4,
+            #ecfdf5
+        );
+
+    border:
+        2px solid #bbf7d0;
+
+}
+
+
+.icon {
+
+    font-size: 65px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.mode-card h2 {
+
+    font-size: 28px;
+
+    margin: 10px 0;
+
+}
+
+
+.mode-card p {
+
+    max-width: 430px;
+
+    line-height: 1.7;
+
+    color: #64748b;
+
+    min-height: 55px;
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.mode-button {
+
+    border: none;
+
+    padding: 16px 30px;
+
+    border-radius: 12px;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-top: 25px;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+
+}
+
+
+.mode-button:hover {
+
+    transform: scale(1.04);
+
+    opacity: 0.92;
+
+}
+
+
+.normal-button {
+
+    background: #2563eb;
+
+}
+
+
+.ai-button {
+
+    background: #16a34a;
+
+}
+
+
+/* =====================================================
+   HIDDEN
+===================================================== */
+
+.hidden {
+
+    display: none !important;
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.prediction-section {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+}
+
+
+.back-button {
+
+    border: none;
+
+    background: white;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    margin-bottom: 20px;
+
+    font-weight: bold;
+
+}
+
+
+.form-card {
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.08);
+
+}
+
+
+.form-card h2 {
+
+    margin-top: 0;
+
+    font-size: 27px;
+
+}
+
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.field {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.field label {
+
+    font-weight: bold;
+
+}
+
+
+.field input,
+.field select {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    outline: none;
+
+}
+
+
+.field input:focus,
+.field select:focus {
+
+    border-color: #16a34a;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(22, 163, 74, 0.1);
+
+}
+
+
+.field small {
+
+    color: #64748b;
+
+    line-height: 1.5;
+
+}
+
+
+/* =====================================================
+   AI
+===================================================== */
+
+.ai-form-card {
+
+    border:
+        2px solid #bbf7d0;
+
+}
+
+
+.ai-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.ai-title > span {
+
+    font-size: 55px;
+
+}
+
+
+.ai-title h2 {
+
+    margin: 0;
+
+}
+
+
+.ai-title p {
+
+    color: #64748b;
+
+}
+
+
+.ai-info {
+
+    background: #f0fdf4;
+
+    border:
+        1px solid #bbf7d0;
+
+    border-radius: 12px;
+
+    padding: 18px;
+
+    margin: 20px 0;
+
+}
+
+
+.ai-info ul {
+
+    margin-bottom: 0;
+
+    line-height: 1.8;
+
+}
+
+
+.submit-button {
+
+    width: 100%;
+
+    border: none;
+
+    padding: 16px;
+
+    border-radius: 12px;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.normal-submit {
+
+    background: #2563eb;
+
+}
+
+
+.ai-submit {
+
+    background: #16a34a;
+
+}
+
+
+.submit-button:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .mode-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+    }
+
+    .page {
+
+        padding: 18px;
+
+    }
+
+}

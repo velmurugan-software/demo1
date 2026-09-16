@@ -1,0 +1,215 @@
+<!DOCTYPE html> 
+<html> 
+ 
+<head> 
+ 
+<title>Government Dashboard</title> 
+ 
+<style> 
+ 
+body { 
+ 
+    margin: 0; 
+ 
+    font-family: Arial; 
+ 
+    background: #f4f6f8; 
+} 
+ 
+.navbar { 
+ 
+    background: #37474f; 
+ 
+    color: white; 
+ 
+    padding: 18px 30px; 
+ 
+    display: flex; 
+ 
+    justify-content: space-between; 
+} 
+ 
+.navbar a { 
+ 
+    color: white; 
+ 
+    text-decoration: none; 
+} 
+ 
+.container { 
+ 
+    padding: 30px; 
+} 
+ 
+.card { 
+ 
+    background: white; 
+ 
+    padding: 25px; 
+ 
+    margin-bottom: 30px; 
+ 
+    border-radius: 12px; 
+} 
+ 
+table { 
+ 
+    width: 100%; 
+ 
+    border-collapse: collapse; 
+} 
+ 
+th, 
+td { 
+ 
+    padding: 12px; 
+ 
+    border-bottom: 1px solid #ddd; 
+ 
+    text-align: left; 
+} 
+ 
+th { 
+ 
+    background: #37474f; 
+ 
+    color: white; 
+} 
+ 
+</style> 
+ 
+</head> 
+ 
+<body> 
+ 
+<div class="navbar"> 
+ 
+    <b> 
+        🏛️ Government Officer Dashboard 
+    </b> 
+ 
+    <div> 
+ 
+        {{ username }} 
+ 
+        | 
+ 
+        <a href="{{ url_for('logout') }}"> 
+            Logout 
+        </a> 
+ 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="container"> 
+ 
+    <h1> 
+        Agricultural Analytics 
+    </h1> 
+ 
+ 
+    <div class="card"> 
+ 
+        <h2> 
+            Total Districts 
+        </h2> 
+ 
+        <h1> 
+            {{ district_count }} 
+        </h1> 
+ 
+    </div> 
+ 
+ 
+    <div class="card"> 
+ 
+        <h2> 
+            Average Yield by State 
+        </h2> 
+ 
+        <table> 
+ 
+            <tr> 
+ 
+                <th> 
+                    State 
+                </th> 
+ 
+                <th> 
+                    Average Yield 
+                </th> 
+ 
+            </tr> 
+ 
+ 
+            {% for item in state_data %} 
+ 
+            <tr> 
+ 
+                <td> 
+                    {{ item.state }} 
+                </td> 
+ 
+                <td> 
+                    {{ item.yield }} 
+                    ton/ha 
+                </td> 
+ 
+            </tr> 
+ 
+            {% endfor %} 
+ 
+        </table> 
+ 
+    </div> 
+ 
+ 
+    <div class="card"> 
+ 
+        <h2> 
+            Average Yield by Crop 
+        </h2> 
+ 
+        <table> 
+ 
+            <tr> 
+ 
+                <th> 
+                    Crop 
+                </th> 
+ 
+                <th> 
+                    Average Yield 
+                </th> 
+ 
+            </tr> 
+ 
+ 
+            {% for item in crop_data %} 
+ 
+            <tr> 
+ 
+                <td> 
+                    {{ item.crop }} 
+                </td> 
+ 
+                <td> 
+                    {{ item.yield }} 
+                    ton/ha 
+                </td> 
+ 
+            </tr> 
+ 
+            {% endfor %} 
+ 
+        </table> 
+ 
+    </div> 
+ 
+</div> 
+ 
+</body> 
+ 
+</html> this old code

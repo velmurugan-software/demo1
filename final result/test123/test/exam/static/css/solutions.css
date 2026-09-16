@@ -1,0 +1,355 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f8f5;
+    color: #263b2a;
+}
+
+
+/* NAVBAR */
+
+.navbar {
+    height: 70px;
+    padding: 0 7%;
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #2e7d32;
+}
+
+
+/* CONTAINER */
+
+.solutions-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px 0;
+}
+
+
+/* HEADER */
+
+.page-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.page-header h1 {
+    font-size: 42px;
+    color: #1b5e20;
+    margin-bottom: 12px;
+}
+
+.page-header p {
+    color: #666;
+    font-size: 17px;
+}
+
+
+/* CROP */
+
+.crop-card {
+    background: linear-gradient(
+        135deg,
+        #e8f5e9,
+        #ffffff
+    );
+
+    border-radius: 20px;
+
+    padding: 35px;
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+
+    margin-bottom: 50px;
+}
+
+.crop-icon {
+    font-size: 70px;
+}
+
+.small-title {
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #777;
+}
+
+.crop-card h2 {
+    font-size: 36px;
+    color: #1b5e20;
+    margin: 7px 0;
+}
+
+
+/* SECTION */
+
+.section {
+    margin-bottom: 55px;
+}
+
+.section-title {
+    font-size: 28px;
+    color: #1b5e20;
+    margin-bottom: 10px;
+}
+
+.section > p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+
+/* WEATHER */
+
+.weather-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.weather-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.07);
+}
+
+.weather-card span {
+    font-size: 40px;
+}
+
+.weather-card h3 {
+    margin: 15px 0 8px;
+}
+
+.weather-card p {
+    font-size: 27px;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+
+/* SECTION HEADING */
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.view-btn {
+    text-decoration: none;
+    background: #2e7d32;
+    color: white;
+
+    padding: 12px 20px;
+    border-radius: 8px;
+}
+
+.view-btn:hover {
+    background: #1b5e20;
+}
+
+
+/* VIDEOS */
+
+.video-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+.video-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.07);
+
+    transition: 0.3s;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+}
+
+.video-image {
+    height: 150px;
+
+    border-radius: 10px;
+
+    background: #eeeeee;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 55px;
+
+    margin-bottom: 20px;
+}
+
+.video-card h3 {
+    margin-bottom: 10px;
+}
+
+.video-card p {
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.video-card a {
+    color: #2e7d32;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+/* NEWS */
+
+.news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.news-card {
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 13px;
+
+    display: flex;
+    gap: 20px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.06);
+}
+
+.news-icon {
+    font-size: 35px;
+}
+
+.news-content {
+    flex: 1;
+}
+
+.news-content h3 {
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.news-content .date {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.news-content a {
+    color: #2e7d32;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.no-news {
+    background: white;
+    padding: 35px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .weather-grid,
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .crop-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 0 4%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .page-header h1 {
+        font-size: 30px;
+    }
+
+}
